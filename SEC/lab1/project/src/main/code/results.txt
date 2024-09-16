@@ -1,0 +1,7 @@
+A Cutie 
+full path: /home/cutie/hub/SEC/lab1/project/src/main/code
+current project path: project/src/main/code
+user: cutie
+system: Linux
+kernel: #1 SMP PREEMPT_DYNAMIC Kali 6.8.11-1kali2 (2024-05-30)
+Path Hash: 6c7f4c5efbacdde8e89cb85ed1f79506535fa1c064ac97aac2aa6f8fd806e162

@@ -1,0 +1,28 @@
+# Fdb version 4
+["pdflatex"] 1725551942.42221 "report.tex" "report.pdf" "report" 1725551942.61231 0
+  "/etc/texmf/web2c/texmf.cnf" 1725288004.07184 475 c0e671620eb5563b2130f56340a5fde8 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1248133631 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
+  "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/article.cls" 1717359999 20144 67a5f8e0f9e445e8ec6834e595cebdc9 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo" 1717359999 8448 358bf3de18513f057a13bdc6e6770c41 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty" 1579991033 13886 d1306dcf79a944f6988e688c1785f9ce ""
+  "/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg" 1465944070 1224 978390e9c2234eab29404bc21b268d1e ""
+  "/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def" 1713382759 19440 9da9dcbb27470349a580fca7372d454b ""
+  "/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty" 1717359999 18363 b79c83eab17bf475b508f05e9807e605 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty" 1717359999 8010 6f2ad8c2b2ffbd607af6475441c7b5e4 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty" 1717359999 2671 70891d50dac933918b827d326687c6e8 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty" 1717359999 4023 2c9f39712cf7b43d3eb93a8bbd5c8f67 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1716410060 29785 9f93ab201fe5dd053afcc6c1bcf7d266 ""
+  "/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg" 1279039959 678 4792914a8f45be57bb98413425e4c7af ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1720733508 41397 9faae6d82bd50f2dbfc10ae285bd31e2 ""
+  "/usr/share/texmf/web2c/texmf.cnf" 1720733508 41397 9faae6d82bd50f2dbfc10ae285bd31e2 ""
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1725299234 128028 f533b797fba58d231669ea19e894e23e ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1725299278 6829270 a7d755f9409b1fa9831d2ee5a7f9776e ""
+  "report.aux" 1725551942.59232 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "report.tex" 1725551942.06831 100 a233e9db9ebd0e3e6f462704aa0b282e ""
+  (generated)
+  "report.aux"
+  "report.log"
+  "report.pdf"
+  (rewritten before read)

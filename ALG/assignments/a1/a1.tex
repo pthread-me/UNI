@@ -1,0 +1,72 @@
+\documentclass{article}
+
+% Set the margins of the page.
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+% A bunch of math packages.
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+% Insert images
+\usepackage{graphicx}
+
+% COLORS!
+\usepackage{color}
+
+% More enumerate types such as \alph*
+\usepackage{enumitem}
+
+% Used for code-blocks in latex.
+\usepackage{listings}
+
+% Create links when using ref and table of contents.
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=black}
+
+% Replace the indents for paragraphs with empty lines.
+\usepackage[parfill]{parskip}
+
+% Number equations with reference to sub sections.
+\numberwithin{equation}{subsection}
+
+\definecolor{lightgray}{RGB}{200, 200, 200}
+
+% Set some style rules for code-blocks
+\lstset{
+	literate={<-}{$\leftarrow$}{2} {\\infty}{$\infty$}{1},
+	backgroundcolor=\color{lightgray}
+,
+	framexleftmargin=2pt,
+	framexrightmargin=2pt,
+	framextopmargin=2pt,
+	framexbottommargin=2pt,
+	frame=single,
+	basicstyle=\fontsize{10pt}{15pt}\selectfont,
+	stepnumber=1,
+	tabsize=4,
+}
+
+\title{\textbf{CSCI-4113\\Assignment 0}}
+\author{Anas Alhadi\\B00895875}
+
+\begin{document}
+
+	\maketitle
+	\tableofcontents
+
+	\newpage
+	\subsection{Question 1}
+	\par{Given a graph $G=(V,E)$. An ILP for the Dominating Set $D\subseteq V$ over $G$ can be:}
+	
+	\begin{itemize}
+		\item 	\par{First we define the variable $x_v = \{0,1\}$ in which $x_v = 1, v\in D$ and $0$ otherwise}
+		\item 	\par{The objective function is to minimize $\sum_{v\in V}c_vx_v$}
+		\item 	\par{We now define a neighbor set $N_v\subseteq V$ to be the set of vertices directly connected to a vetrex $v\in V$ unioned with the vertex itself}
+			\par{Such that we have a constraint that states that the $\sum_{v\in V}x_v \ge 1, \forall N_v$\\\{What this basically
+			is trying to say is that given a vertex, at least it or one of its neighbors needs to be in D\}}
+	\end{itemize}
+
+   \end{document}
