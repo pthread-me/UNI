@@ -1,0 +1,9 @@
+SELECT * FROM "USERS" WHERE "NAME" = 
+".. or TRUE --" 
+AND "PASSWORD" = 
+"..." OR TRUE -- "
+
+
+
+
+SELECT 'ID' 'NAME' 'PASSWORD' FROM 'USERS' WHERE 'NAME' = 'name'   

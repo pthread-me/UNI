@@ -1,0 +1,27 @@
+version: "3.3"
+services:
+  db:
+    image: rcopstein/dal-csci4178-lab03-db
+    restart: always
+    environment:
+      MYSQL_USER: "user"
+      MYSQL_DATABASE: "db"
+      MYSQL_PASSWORD: "password"
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    expose:
+      - "3306"
+    volumes:
+      - db:/var/lib/mysql
+
+  server:
+    image: rcopstein/dal-csci4178-lab03-server
+    restart: always
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    depends_on:
+      - "db"
+
+volumes:
+  db:
