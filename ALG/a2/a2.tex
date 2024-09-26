@@ -231,10 +231,10 @@
 		-3x-w-z'+z''\leq-1	
 	\end{equation}
 	\begin{equation}\tag{3}
-		x+2w+2z'-2z''\leq8
+		x+2w+2z'-2z''\leq-8
 	\end{equation}
 	\begin{equation}\tag{4}
-		-x-2w-2z'+2z''\leq-8	
+		-x-2w-2z'+2z''\leq8	
 	\end{equation}
 	\begin{equation}\tag{5}
 		4x+w+3z'-3z''\leq21	
@@ -254,7 +254,7 @@
 	}
 
 	\begin{equation}\notag
-		Maximize(-3x+4w-2z'+2z'' +d)
+		Maximize(-3x+4w'-2z'+2z'' +d)
 	\end{equation}
 	Such that:
 	\begin{equation}\tag{1}
@@ -264,10 +264,10 @@
 		-3x-w-z'+z''+y_2=-1	
 	\end{equation}
 	\begin{equation}\tag{3}
-		x+2w+2z'-2z''+y_3=8
+		x+2w+2z'-2z''+y_3=-8
 	\end{equation}
 	\begin{equation}\tag{4}
-		-x-2w-2z'+2z''+y_4=-8	
+		-x-2w-2z'+2z''+y_4=8	
 	\end{equation}
 	\begin{equation}\tag{5}
 		4x+w+3z'-3z''+y_5=21	
@@ -291,9 +291,9 @@
 		\hline
 		$-1$& 	$$& 	$1$& 	$$& 	$$& 	$$& 	$-3$& 	$-1$& 	$-1$& 	$1$\\
 		\hline
-		$8$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$1$& 	$2$& 	$2$& 	$-2$\\
+		$-8$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$1$& 	$2$& 	$2$& 	$-2$\\
 		\hline
-		$-8$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$-1$& 	$-2$& 	$-2$& 	$2$\\ 
+		$8$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$-1$& 	$-2$& 	$-2$& 	$2$\\ 
 		\hline
 		$21$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$4$& 	$1$& 	$3$& 	$-3$\\
 		\hline
@@ -301,6 +301,133 @@
 		\hline
 		\end{tabular}
 	\end{center}
+
+	\vspace{15pt}
+	The basic solutions $\{b_1, b_2, b_3, b_4, b_5\}$ are $\{20, -1, -8, 8, 21\}$
+	respectivley. This solution is not feasible since $b_1$ and $b_2$ both have 
+	negative values.
+
+	\newpage
+	\section{Question 4}
+	\par{
+		We modify the Original LP by adding a new variable $s$ to form an Auxiliary LP $Q$:
+	}
+
+	\begin{equation}\notag
+		Maximize(-s)
+	\end{equation}
+	Such that:
+	\begin{equation}\tag{1}
+		4x-w-2z'+2z''+y_1-s=20	
+	\end{equation}
+	\begin{equation}\tag{2}
+		-3x-w-z'+z''+y_2-s=-1	
+	\end{equation}
+	\begin{equation}\tag{3}
+		x+2w+2z'-2z''+y_3-s=-8
+	\end{equation}
+	\begin{equation}\tag{4}
+		-x-2w-2z'+2z''+y_4-s=8	
+	\end{equation}
+	\begin{equation}\tag{5}
+		4x+w+3z'-3z''+y_5-s=21	
+	\end{equation}
+	\begin{equation}\notag
+		x\ge0, w\ge0, z'\ge0, z''\ge0, s\ge0
+	\end{equation}
+	\begin{equation}\notag
+		y_i\ge0 \text{ where } 1\le i\le5	
+	\end{equation}
+
+	\vspace{15pt}
+	\textbf{\underline{Steps:}}
+	\begin{enumerate}
+		\item Choose the column whom basic variable corresponds to the lowest
+			basic solution value. In our case the lowest value in $b$ is $-8$
+			which corresponds to the variable $y_3$
+		\item Swap column of $s$ with $y_3$, so $y_3$ leaves the basis and $s$ enters
+		\item Looking at row (4), multiple the entries in (4)  by $-1$, Then:
+			\begin{enumerate}
+				\item (1) + (4)
+				\item (2) + (4)
+				\item (3) + (4)
+				\item (5) + (4)
+				\item (6) + (4)
+			\end{enumerate}
+			Now we have that $Q$ has a feasible solution, so we continue solving the 
+			LP until we find an optimal solution.
+
+		\item We choose an arbirtary non-basic variable whom objective function
+			value is non-negative, I'm choosing $z''$, we then find the row with 
+			the $Min(\frac{b_i}{a_{z'',i}})$.\\ 
+			In this case the min is $\frac{b_5}{a_{w,2}} = \frac{7}{3} = 2.333$ 
+
+		\item Swap columns $z''$ and $y_2$ Then perform the basic row operations to restore the 
+			identity matrix in the basis.
+			\begin{enumerate}
+				\item (2) / 3
+				\item (1) - 4*(2) 
+				\item (3) - 2*(2)
+				\item (4) - 4(2)
+				\item (5) - (2)
+				\item (6) - 4(2)
+
+			\end{enumerate}
+
+		\item Repeate steps 4 and 5, this time we choose the column $x$ so the 
+			$Min(\frac{b_i}{a_{x,i}})$ is $\frac{10}{3}\times \frac{3}{5}$ 
+			corresponding to column $s$
+
+			\begin{enumerate}
+				\item (3) * 3/5
+				\item (1) - 25/3(3)
+				\item (2) + 4/3(3)
+				\item (4) - 10/3(3)
+				\item (5) - 10/3(3)
+				\item (6) - 4/3(3)
+			\end{enumerate}
+
+		\item Again now with $y_3$ as the variable entering the basis, the corresponding 
+			variable to leave is $y_4$.
+
+			\begin{enumerate}
+				\item (1) - 2(4)  
+				\item (2) + 3/5(4)  
+				\item (3) + 1/5(4)  
+				\item (6) - 3/5(4)  
+			\end{enumerate}
+
+		\item Again this time $w$ enters the basis, and $y_1$ leaves. 
+			\begin{enumerate}
+				\item (2) + (1)
+				\item (5) + 2(1)
+				\item (6) - 6(1)
+			\end{enumerate}
+
+
+		\item Again, now $y_4$ enters and $y_3$ leaves the basis 
+			\begin{enumerate}
+				\item (1) + 2(4) 
+				\item (2) + 7/5(4) 
+				\item (3) - 1/5(4) 
+				\item (5) + 4(4) 
+				\item (6) -57/5(4) 
+			\end{enumerate}
+
+		\item We now recover the original objective function values of $x,w,z',z''$ and 
+			perform the following row operations to fix the basis:
+			\begin{enumerate}
+				\item (6) - 4(1)
+				\item (6) - 2(2)
+				\item (6) + 3(3)	
+			\end{enumerate}
+
+		\item The final LP is: <insert table bellow>
+	\end{enumerate}
+
+
+	\newpage
+	\section{Question 5}
 
 
 \end{document}
