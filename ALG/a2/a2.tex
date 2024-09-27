@@ -48,9 +48,10 @@
 	stepnumber=1,
 	tabsize=4,
 }
-% Custom Commands:
-%\renewcommand{\vspace}{\vspace{5pt}}
 
+
+%increases table padding
+\def\arraystretch{1.5}
 
 \title{\textbf{CSCI-4113\\Assignment 2}}
 \author{Anas Alhadi\\B00895875}
@@ -340,29 +341,76 @@
 	\end{equation}
 
 	\vspace{15pt}
+	\text{Giving us the following tableau}
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		$b$& 	$y_1$& 	$y_2$& 	$y_3$& 	$y_4$& 	$y_5$& 	$x$& 	$w$& 	$z'$& 	$z''$& 	$s$\\
+		\hline
+		$20$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$4$& 	$-1$& 	$-2$& 	$2$& 	$-1$\\		
+		\hline
+		$-1$& 	$$& 	$1$& 	$$& 	$$& 	$$& 	$-3$& 	$-1$& 	$-1$& 	$1$& 	$-1$\\
+		\hline
+		$-8$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$1$& 	$2$& 	$2$& 	$-2$& 	$-1$\\
+		\hline
+		$8$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$-1$& 	$-2$& 	$-2$& 	$2$& 	$-1$\\ 
+		\hline
+		$21$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$4$& 	$1$& 	$3$& 	$-3$& 	$-1$\\
+		\hline
+		$$& 	$$& 	$$& 	$$& 	$$& 	$$& 	$-3$& 	$4$& 	$-2$& 	$2$& 	$-1$\\
+		\hline
+		\end{tabular}
+	\end{center}
+
+
+	\vspace{15pt}
 	\textbf{\underline{Steps:}}
 	\begin{enumerate}
 		\item Choose the column whom basic variable corresponds to the lowest
 			basic solution value. In our case the lowest value in $b$ is $-8$
-			which corresponds to the variable $y_3$
-		\item Swap column of $s$ with $y_3$, so $y_3$ leaves the basis and $s$ enters
-		\item Looking at row (4), multiple the entries in (4)  by $-1$, Then:
+			which corresponds to the variable $y_3$. So we swap them, $s$ enters the basis and $y_3$ leaves.
+		\item  We now perform the bellow operations to restore the identity matrix:
 			\begin{enumerate}
+				\item (4) * -1
 				\item (1) + (4)
 				\item (2) + (4)
 				\item (3) + (4)
 				\item (5) + (4)
 				\item (6) + (4)
 			\end{enumerate}
+		
+			\newpage
+			\text{This gives the bellow tableau:}
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+				\hline
+				$b$& 	$y_1$& 	$y_2$& 	$s$& 	$y_4$& 	$y_5$& 	$x$& 	$w$& 	$z'$& 	$z''$& 	$y_3$\\
+				\hline
+				$28$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$3$& 	$-3$& 	$-4$& 	$4$& 	$-1$\\		
+				\hline
+				$7$& 	$$& 	$1$& 	$$& 	$$& 	$$& 	$-4$& 	$-3$& 	$-3$& 	$3$& 	$-1$\\
+				\hline
+				$8$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$-1$& 	$-2$& 	$-2$& 	$2$& 	$-1$\\
+				\hline
+				$16$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$-2$& 	$-4$& 	$-4$& 	$4$& 	$-1$\\ 
+				\hline
+				$29$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$2$& 	$-3$& 	$-1$& 	$1$& 	$-1$\\
+				\hline
+				$8$& 	$$& 	$$& 	$$& 	$$& 	$$& 	$-4$& 	$2$& 	$-4$& 	$4$& 	$-1$\\
+				\hline
+			\end{tabular}
+		\end{center}
+
+
 			Now we have that $Q$ has a feasible solution, so we continue solving the 
 			LP until we find an optimal solution.
 
-		\item We choose an arbirtary non-basic variable whom objective function
+		\item Choose an arbirtary non-basic variable whom objective function
 			value is non-negative, I'm choosing $z''$, we then find the row with 
 			the $Min(\frac{b_i}{a_{z'',i}})$.\\ 
-			In this case the min is $\frac{b_5}{a_{w,2}} = \frac{7}{3} = 2.333$ 
+			In this case the min is $\frac{b_5}{a_{w,2}} = \frac{7}{3} = 2.333$
 
-		\item Swap columns $z''$ and $y_2$ Then perform the basic row operations to restore the 
+			So pivot $z''$ into the basis and $y_2$ out. Then perform the basic row operations to restore the 
 			identity matrix in the basis.
 			\begin{enumerate}
 				\item (2) / 3
@@ -371,13 +419,32 @@
 				\item (4) - 4(2)
 				\item (5) - (2)
 				\item (6) - 4(2)
-
 			\end{enumerate}
 
-		\item Repeate steps 4 and 5, this time we choose the column $x$ so the 
-			$Min(\frac{b_i}{a_{x,i}})$ is $\frac{10}{3}\times \frac{3}{5}$ 
-			corresponding to column $s$
+			Resulting in:
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					$b$& 				$y_1$& 	$z''$& 	$s$& 	$y_4$& 	$y_5$& 	$x$& 	$w$& 	$z'$& 	$y_2$& 	$y_3$\\
+					\hline
+					$\frac{56}{3}$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$\frac{25}{3}$& 	$1$& 	$$& 	$-\frac{4}{3}$& 	$\frac{1}{3}$\\		
+					\hline
+					$\frac{7}{3}$& 		$$& 	$1$& 	$$& 	$$& 	$$& 	$-\frac{4}{3}$& 	$-1$& 	$-1$& 	$\frac{1}{3}$& 	$-\frac{1}{3}$\\
+					\hline
+					$\frac{10}{3}$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$\frac{5}{3}$& 	$$& 	$$& 	$-\frac{2}{3}$& 	$-\frac{1}{3}$\\
+					\hline
+					$\frac{20}{3}$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$\frac{10}{3}$& 	$$& 	$$& 	$-\frac{4}{3}$& 	$\frac{1}{3}$\\ 
+					\hline
+					$\frac{80}{3}$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$\frac{10}{3}$& 	$-2$& 	$$& 	$-\frac{1}{3}$& 	$-\frac{2}{3}$\\
+					\hline
+					$\frac{10}{3}$& 	$$& 	$$& 	$$& 	$$& 	$$& 	$\frac{4}{3}$& 	$6$& 	$$& 	$-\frac{4}{3}$& 	$\frac{1}{3}$\\
+					\hline
+				\end{tabular}
+			\end{center}
 
+
+		\newpage
+		\item Repeate steps 4 and 5, this time we pivot $x$ into the basis and $s$ out. 
 			\begin{enumerate}
 				\item (3) * 3/5
 				\item (1) - 25/3(3)
@@ -386,6 +453,27 @@
 				\item (5) - 10/3(3)
 				\item (6) - 4/3(3)
 			\end{enumerate}
+		
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					$b$& 	$y_1$& 	$z''$& 	$x$& 	$y_4$& 	$y_5$& 	$s$& 	$w$& 	$z'$& 	$y_2$& 	$y_3$\\
+					\hline
+					$2$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$2$& 	$2$\\		
+					\hline
+					$5$& 	$$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$-1$& 	$-1$& 	$-\frac{1}{5}$& 	$-\frac{3}{5}$\\
+					\hline
+					$2$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$\frac{3}{5}$& 	$$& 	$$& 	$-\frac{2}{5}$& 	$-\frac{1}{5}$\\
+					\hline
+					$$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$-2$& 	$$& 	$$& 	$$& 	$1$\\ 
+					\hline
+					$20$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$-2$& 	$-2$& 	$$& 	$1$& 	$$\\
+					\hline
+					$$& 	$$& 	$$& 	$$& 	$$& 	$$& 	$-\frac{4}{5}$& 	$6$& 	$$& 	$-\frac{4}{5}$& 	$\frac{3}{5}$\\
+					\hline
+				\end{tabular}
+			\end{center}
+
 
 		\item Again now with $y_3$ as the variable entering the basis, the corresponding 
 			variable to leave is $y_4$.
@@ -397,12 +485,54 @@
 				\item (6) - 3/5(4)  
 			\end{enumerate}
 
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					$b$& 	$y_1$& 	$z''$& 	$x$& 	$y_3$& 	$y_5$& 	$s$& 	$w$& 	$z'$& 	$y_2$& 	$y_4$\\
+					\hline
+					$2$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$4$& 	$1$& 	$$& 	$2$& 	$-2$\\		
+					\hline
+					$5$& 	$$& 	$1$& 	$$& 	$$& 	$$& 	$-\frac{6}{5}$& 	$-1$& 	$-1$& 	$-\frac{1}{5}$& 	$\frac{3}{5}$\\
+					\hline
+					$2$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$\frac{1}{5}$& 	$$& 	$$& 	$-\frac{2}{5}$& 	$\frac{1}{5}$\\
+					\hline
+					$$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$-2$& 	$$& 	$$& 	$$& 	$1$\\ 
+					\hline
+					$20$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$-2$& 	$-2$& 	$$& 	$1$& 	$$\\
+					\hline
+					$$& 	$$& 	$$& 	$$& 	$$& 	$$& 	$\frac{2}{5}$& 	$6$& 	$$& 	$-\frac{4}{5}$& 	$-\frac{3}{5}$\\
+					\hline
+				\end{tabular}
+			\end{center}
+
+		\newpage
 		\item Again this time $w$ enters the basis, and $y_1$ leaves. 
 			\begin{enumerate}
 				\item (2) + (1)
 				\item (5) + 2(1)
 				\item (6) - 6(1)
 			\end{enumerate}
+
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					$b$& 	$w$& 	$z''$& 	$x$& 	$y_3$& 	$y_5$& 	$s$& 	$y_1$& 	$z'$& 	$y_2$& 	$y_4$\\
+					\hline
+					$2$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$4$& 	$1$& 	$$& 	$2$& 	$-2$\\		
+					\hline
+					$7$& 	$$& 	$1$& 	$$& 	$$& 	$$& 	$\frac{14}{5}$& 	$1$& 	$-1$& 	$\frac{9}{5}$& 	$-\frac{7}{5}$\\
+					\hline
+					$2$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$\frac{1}{5}$& 	$$& 	$$& 	$-\frac{2}{5}$& 	$\frac{1}{5}$\\
+					\hline
+					$$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$-2$& 	$$& 	$$& 	$$& 	$1$\\ 
+					\hline
+					$24$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$6$& 	$2$& 	$$& 	$5$& 	$-4$\\
+					\hline
+					$$& 	$$& 	$$& 	$$& 	$$& 	$$& 	$-\frac{118}{5}$& 	$-6$& 	$$& 	$-\frac{64}{5}$& 	$\frac{57}{5}$\\
+					\hline
+				\end{tabular}
+			\end{center}
+
 
 
 		\item Again, now $y_4$ enters and $y_3$ leaves the basis 
@@ -413,6 +543,27 @@
 				\item (5) + 4(4) 
 				\item (6) -57/5(4) 
 			\end{enumerate}
+
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					$b$& 	$w$& 	$z''$& 	$x$& 	$y_4$& 	$y_5$& 	$s$& 	$y_1$& 	$z'$& 	$y_2$& 	$y_3$\\
+					\hline
+					$2$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$2$& 	$2$\\		
+					\hline
+					$7$& 	$$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$-1$& 	$\frac{9}{5}$& 	$\frac{7}{5}$\\
+					\hline
+					$2$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$\frac{3}{5}$& 	$$& 	$-\frac{2}{5}$& 	$$& 	$-\frac{1}{5}$\\
+					\hline
+					$$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$-2$& 	$$& 	$$& 	$$& 	$1$\\ 
+					\hline
+					$24$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$-2$& 	$$& 	$2$& 	$$& 	$4$\\
+					\hline
+					$$& 	$$& 	$$& 	$$& 	$$& 	$$& 	$-\frac{4}{5}$& 	$-6$& 	$$& 	$-\frac{64}{5}$& 	$-\frac{57}{5}$\\
+					\hline
+				\end{tabular}
+			\end{center}
+
 
 		\item We now recover the original objective function values of $x,w,z',z''$ and 
 			perform the following row operations to fix the basis:
@@ -428,6 +579,48 @@
 
 	\newpage
 	\section{Question 5}
+	\textbf{\underline{Steps:}}
+	\begin{enumerate}
+		\item We only have one non-basic variable with possitive objective 
+			function coofficient , so we start by swapping $z'$ and $z''$.
 
+			\begin{enumerate}
+				\item (2) * -1 
+				\item (6) + 2(2)
+			\end{enumerate}
+
+		\item repeat with $z''$ entering the basis and $z'$ leaving
+			\begin{enumerate}
+				\item (2) * -1
+
+
+			\end{enumerate}
+	\end{enumerate}
+
+
+
+	\newpage 
+	\section{Question 6}
+		\textbf{\underline{Brief Overview/Definitions:}}
+		\begin{enumerate}
+			\item At every run, Simplex attempts to increase the value of a non-basic 
+					variable by the tightest upper bound imposed on the variable by the constraints. 
+			\item Recall that in the notes, we stated that the feasible region of every individual constarint forms a 
+				half space, and since a feasible solution must satisfy all constraints this means that it lies in the 
+				intersection of these halfspaces which is a convex polytope. (I focus on the fact that the feasible region is convex)
+		\end{enumerate}
+
+		\textbf{\underline{Proof}}
+		\par{Given a tablue in which all the coefficients in the objective function are negative, this means that increasing the 
+				value of any of the non-basic variables will reduce the objective function value.}
+		\par{Further, since the feasible region of our tablue is convex this means that a local maxima on the objective function is also a 
+		global maxima. Thus the solution can not be ``pushed up" any further without breaking any of the constraints. And the BFS 
+		at the point where the coefficients of the objective function are all negative is an optimal solution for that tablue.}
+		
+		\par{Finally since Simplex always constructs tablues with the same objective function and equivalent constraints to that 
+				of the original LP, means that for a feasible solution of the original LP say $z'$ to have an objective function value 
+				larger than $\hat{z}$ implies that the tablue constructed by simplex is not equivalent to the original LP, since 
+				we know that $\hat{z}$ is at a golbal maxima of it's feasibility region so $z'$ must have a different feasibility region.
+				And since we only use basic row operations when constructing subsequent tablues we know that this is not true. }
 
 \end{document}
