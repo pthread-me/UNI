@@ -70,7 +70,7 @@
 
 
 	\begin{equation}\notag
-		Mazimize(3x+4w+2z)
+		Minimize(3x+4w+2z)
 	\end{equation}
 
 	Such That:
@@ -79,7 +79,7 @@
 		4x+w-2z \leq 20
 	\end{equation}
 	\begin{equation}\tag{2}
-		3x - w +2 \ge 1 
+		3x - w +z \ge 1 
 	\end{equation}
 	\begin{equation}\label{q1-3}\tag{3}
 		x-2w+2z = -8
@@ -553,7 +553,7 @@
 					\hline
 					$7$& 	$$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$-1$& 	$\frac{9}{5}$& 	$\frac{7}{5}$\\
 					\hline
-					$2$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$\frac{3}{5}$& 	$$& 	$-\frac{2}{5}$& 	$$& 	$-\frac{1}{5}$\\
+					$2$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$\frac{3}{5}$& 	$$& 	$$& 	$-\frac{2}{5}$& 	$-\frac{1}{5}$\\
 					\hline
 					$$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$-2$& 	$$& 	$$& 	$$& 	$1$\\ 
 					\hline
@@ -565,39 +565,67 @@
 			\end{center}
 
 
-		\item We now recover the original objective function values of $x,w,z',z''$ and 
+		\item We now remove $s$ and recover the original objective function values of $x,w,z',z''$ and 
 			perform the following row operations to fix the basis:
+
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					$b$& 	$w$& 	$z''$& 	$x$& 	$y_4$& 	$y_5$& 	$y_1$& 	$z'$& 	$y_2$& 	$y_3$\\
+					\hline
+					$2$& 	$1$& 	$$& 	$$& 	$$& 	$$&  	$1$& 	$$& 	$2$& 	$2$\\		
+					\hline
+					$7$& 	$$& 	$1$& 	$$& 	$$& 	$$&  	$1$& 	$-1$& 	$\frac{9}{5}$& 	$\frac{7}{5}$\\
+					\hline
+					$2$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$-\frac{2}{5}$& 	$-\frac{1}{5}$\\
+					\hline
+					$$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$1$\\ 
+					\hline
+					$24$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$2$& 	$$& 	$4$\\
+					\hline
+					$$& 	$4$& 	$2$& 	$-3$& 	$$& 	$$& 	$-6$& 	$-2$& 	$-\frac{64}{5}$& 	$-\frac{57}{5}$\\
+					\hline
+				\end{tabular}
+			\end{center}
+
+		\item Finally perform last set of row operations: 			
 			\begin{enumerate}
 				\item (6) - 4(1)
 				\item (6) - 2(2)
 				\item (6) + 3(3)	
 			\end{enumerate}
-
-		\item The final LP is: <insert table bellow>
+		The final LP is:
+			\begin{center}
+				\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+					\hline
+					$b$& 	$w$& 	$z''$& 	$x$& 	$y_4$& 	$y_5$& 	$y_1$& 	$z'$& 	$y_2$& 	$y_3$\\
+					\hline
+					$2$& 	$1$& 	$$& 	$$& 	$$& 	$$&  	$1$& 	$$& 	$2$& 	$2$\\		
+					\hline
+					$7$& 	$$& 	$1$& 	$$& 	$$& 	$$&  	$1$& 	$-1$& 	$\frac{9}{5}$& 	$\frac{7}{5}$\\
+					\hline
+					$2$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$-\frac{2}{5}$& 	$-\frac{1}{5}$\\
+					\hline
+					$$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$$& 	$$& 	$$& 	$1$\\ 
+					\hline
+					$24$& 	$$& 	$$& 	$$& 	$$& 	$1$& 	$$& 	$2$& 	$$& 	$4$\\
+					\hline
+					$-16$& 	$$& 	$$& 	$$& 	$$& 	$$& 	$-12$& 	$$& 	$-\frac{128}{5}$& 	$-\frac{114}{5}$\\
+					\hline
+				\end{tabular}
+			\end{center}
 	\end{enumerate}
 
 
 	\newpage
 	\section{Question 5}
 	\textbf{\underline{Steps:}}
-	\begin{enumerate}
-		\item We only have one non-basic variable with possitive objective 
-			function coofficient , so we start by swapping $z'$ and $z''$.
-
-			\begin{enumerate}
-				\item (2) * -1 
-				\item (6) + 2(2)
-			\end{enumerate}
-
-		\item repeat with $z''$ entering the basis and $z'$ leaving
-			\begin{enumerate}
-				\item (2) * -1
-
-
-			\end{enumerate}
-	\end{enumerate}
-
-
+	\begin{itemize}
+		\item The tableau we get from Q4) can not be optimized any further as we have that all the coefficients in the objective function 
+			as negative values.
+		\item The BFS values we get are: $x=2, w=2, z'=0, z''=7$ with the Objective function value being $16$.
+		\item The solution of the original LP is: $3(2)+4(-2)+2(0-7) = -16$
+	\end{itemize}
 
 	\newpage 
 	\section{Question 6}
