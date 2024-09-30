@@ -1,0 +1,82 @@
+Challenge 1)
+	Tests for:
+		The exact string "script"
+
+	Using:
+		<scRipT> alert("pop") </ScRipt>
+
+//-----------------------------------------------------------------------------
+
+Challenge 2)
+	Tests for (i think):
+		The strings "<script>" and "</script>" (both have to be present), then 
+		removes them and everything in between.
+
+	Using:
+		 <SCRIPT>alert("pop")</script> 
+
+//-----------------------------------------------------------------------------
+
+Challenge 3)
+	Tests for:
+		Checks that the opening and closing tags are equal, if so it removes 
+		both tags and everything in between them
+
+	Usage:
+		<scripT>alert("pop")</script>
+
+//-----------------------------------------------------------------------------
+
+Challenge 4)
+	Tests for:
+		The filter tests for <script>.*</script> while ignoring cases
+
+	Used:
+		<a onclick=alert("pop") \> download </a>
+
+//-----------------------------------------------------------------------------
+
+Challenge 5)
+	Tests for:
+		The string "alert(.*)"
+
+	used:
+		<a onclick=alert("pop") \> download </a>
+	
+	A cool edge case is that the space between the ") and the \> is necessary
+	since chromuim will insert the double quotes after the \ if there is no space
+	so without space we get: <a onclick="alert('pop')\"> ... which does execute the alert
+	but with the space it becomes: <a onclick="alert('pop')"\> ... which works
+	
+//-----------------------------------------------------------------------------
+
+Challenge 6)
+	Tests for:
+		This covers the edge case above 
+	Used:
+		<a onclick=alert('pop')<Space>
+	<Space> is just saying that you need to have a space after the ') lol.
+	
+	The cool thing here is that the vaulnerable part is actually the tip
+	where it prints what passed through the filter, i beleive that since we are
+	printing verbatim what the user inputs between the <h3></h3> tags, if we enter
+	an unclosed tag with a space, chromuim assumes that the tag encapsulates everything 
+	after the header, so it looks something like this:
+		<h3> <a...unclosed tag  </h3>
+			<div> ... all the buttons and other elements etc </div>
+		</a> <- the closing tag placed by the browser.
+	This made it so that each element in the div would trigger the alert when clicked
+
+	i Think (*^.^*)
+
+challenge 7)
+	Test for:
+		adds the restriction that we cannot use quotes in the input
+	Used:
+		<a onclick=alert(&#x22&#x61&#x22)<Space>
+	
+	Exact same input as challenge6 but now we replace the text inside the alert 
+	with its html hex representation, so again pressing on any element in the 
+	div bellow the <h3> element triggers the alert :)
+
+

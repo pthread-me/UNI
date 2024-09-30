@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/main.css" />
+    <title>Bypass the XSS</title>
+  </head>
+
+  <body class="index">
+    <div class="body-wrapper">
+      <header>
+        <h1>Bypass the XSS</h1>
+        <h3>Can you outsmart my XSS filters?</h3>
+      </header>
+
+      <ul>
+        <li>Level:</li>
+        <li><a href="/challenge/1">1</a></li>
+        <li><a href="/challenge/2">2</a></li>
+        <li><a href="/challenge/3">3</a></li>
+        <li><a href="/challenge/4">4</a></li>
+        <li><a href="/challenge/5">5</a></li>
+        <li><a href="/challenge/6">6</a></li>
+        <li><a href="/challenge/7">7</a></li>
+      </ul>
+
+      <form method="post">
+        <p>Challenge level: 1</p>
+
+         
+        <small>Your latest submission:</small>
+        <h3><>aa</></h3>
+        <div class="input">&lt;&gt;aa&lt;/&gt;</div>
+        
+
+        <br />
+        <br />
+        <br />
+
+        <label>Input</label>
+        <input type="text" name="input" value="&lt;script&gt;aa&lt;/script&gt;" />
+        <br />
+
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

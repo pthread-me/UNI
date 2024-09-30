@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  server:
+    image: rcopstein/dal-csci4178-lab04-server
+    restart: always
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
