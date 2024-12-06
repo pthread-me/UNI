@@ -1,0 +1,69 @@
+Flag 1)
+	- Used reverse shell, php script from pentestmonkey
+	- uploaded the file 
+	- listened via: nc- lvp 7000
+	- accessed the file and got shell access
+	- ls showed a file named flag.txt which contained the flag
+	Flag:
+		FLAG_1: FLAG_MICL6w
+
+Flag 2)
+	- Accessed the /etc/shadow and /etc/passwrd files via the reverse shell
+	- the shadow file had read access for all users so we can just "cat /etc/shadow"
+	- Copied david's entry into my local machine, then used john the reaper with the rockyou wordlist
+	Command:
+		john server.shadow --format=md5crypt-long --wordlist=/usr/share/wordlists/rockyou.txt
+	- This gave the password: sjg0102
+	- Then just "su david"
+	Flag:
+		FLAG_2: FLAG_lg5tRv
+
+Flag 3)
+	- I realized later that I could've (maybe should've) solved this in a different way
+	- What is did was:
+		1) add an entry for the "auth" server to the etc/hosts file, since the secret.c does not hard code IP addresses
+			so we can reroute traffic to wherever we want.
+		2) naturally i made auth point to my local machine, via the following command:
+				echo "192.168.2.122 auth" >> etc/hosts 
+			<replace the address with your machine's ip>
+		3) Notice that the code in secret.c increments the "byte" variable by the size of \r\n\r\n, so whatever the server
+			response is, we will always skip sizeof(\r\n\r\n).
+		4) We construct a "response packet", by:
+				echo -e "\r\n\r\ntrue" > true.txt
+			The content of the packet is true since the presence of "true" right after \r\n\r\n dictates the control flow
+			of the program.
+		5) Start listening for connections on the local machine:
+			nc -lvp 8000 < true.txt
+	
+	Flag:
+		FLAG_3: FLAG_q8IDwT
+
+
+Flag 4)
+	- This took forever:
+		1) Once we have access to the reverse shell, run ifconfig to see if we're conected
+			to any network locally
+		2) In my case uploader was in the subnet 192.168.48.0/24
+		3) run nmap to scan the network:
+				nmap -sn 192.168.48.0/24
+		   The result shows the IP address of the codehub server to be 192.168.48.2
+		4) we can port scan it:
+				nmap 192.168.48.2
+			This shows 2 open port, ssh on 22 and ppp on 3000
+		5) Spend 4 hours trying to login as david to the server then realize that 
+			port 3000 serves a webpage.
+		6) we write a simple bash script that runs ffuf on the form iterating over all 
+			possible 4 digit combinations and return the once where the status code is 302
+
+	Flag:
+		FLAG_4: FLAG_9qrGbA
+
+Flag 5)
+	- after gaining access to the codehub server i was able to access the server's main.py file which contained the JWT secret
+	- reading through the code we can see that it expects a pyload of is_admin being either true or false
+	- use jwt.io to get the jwt token with is_admin set to true and the secret key we got from main.py
+	- copy the initial rejected request as cURL (accessible from the browser) and replace the Cookie to be token=<The jwt we crafted>
+	- the response we get is the openssh private key for admin@codehub, we use it to ssh to codehub where the flag is.
+
+	Flag:
+		FLAG_5: FLAG_CeWxeh

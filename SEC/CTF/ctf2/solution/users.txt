@@ -1,0 +1,7 @@
+@karl
+@peter
+@david
+
+I found david's entry in etc/shadow:
+david:$1$B3l7UMvN$x5sIK.769e6ea0PdItBSu1:20024:0:99999:7:::
+

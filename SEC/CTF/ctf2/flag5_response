@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="/static/main.css" />
+
+    <title>CodeHub by LiSQ</title>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Title -->
+      <div class="title-wrapper">
+        <div class="title">
+          <h1>CodeHub</h1>
+          <small>by LiSQ</small>
+        </div>
+      </div>
+
+      <!-- Alert messages -->
+      
+
+      <!-- Secret Link -->
+      <div class="secret">
+        <p>admin@localhost<br />-----BEGIN OPENSSH PRIVATE KEY-----
+<br />b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAArAAAABNlY2RzYS
+<br />1zaGEyLW5pc3RwNTIxAAAACG5pc3RwNTIxAAAAhQQBNo7qHjEMQHerf3sXs5lOtyWTVLu4
+<br />BZNRmIY9xUyGKzqgJkPzpLqV7KO//M2iXPj1t+4M2ri4hqAff1hZM545mVcBYUG53d7fun
+<br />cSf4KiikauyI0kxOW67jOgJP8M5hHpzfdUWkV5lVHKP1v4Z+BpUZ05KNgCn1Ts6gEDad6S
+<br />nBpq+sQAAAEQKRoqjSkaKo0AAAATZWNkc2Etc2hhMi1uaXN0cDUyMQAAAAhuaXN0cDUyMQ
+<br />AAAIUEATaO6h4xDEB3q397F7OZTrclk1S7uAWTUZiGPcVMhis6oCZD86S6leyjv/zNolz4
+<br />9bfuDNq4uIagH39YWTOeOZlXAWFBud3e37p3En+CoopGrsiNJMTluu4zoCT/DOYR6c33VF
+<br />pFeZVRyj9b+GfgaVGdOSjYAp9U7OoBA2nekpwaavrEAAAAQgGeCBqBiGDtiEOpBk2Tes5n
+<br />ntLswEtbTt6SFOjoJ5JL5CTinUPMRFR3glXRppa7gZgA6wJAHbTh/w/SFjWZdNBctwAAAB
+<br />FyY29wc3RlaW5AVC5sb2NhbAE=
+<br />-----END OPENSSH PRIVATE KEY-----
+</p>
+      </div>
+
+      <div class="footer">
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+  </body>
+</html>

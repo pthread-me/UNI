@@ -1,0 +1,10 @@
+john server.shadow --format=md5crypt-long --wordlist=/usr/share/wordlists/rockyou.txt
+Using default input encoding: UTF-8
+Loaded 1 password hash (md5crypt-long, crypt(3) $1$ (and variants) [MD5 32/64])
+Will run 4 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+sjg0102          (david)     
+1g 0:00:02:42 DONE (2024-12-04 21:33) 0.006168g/s 22995p/s 22995c/s 22995C/s sjg300597..sjfvb2s
+Use the "--show" option to display all of the cracked passwords reliably
+Session completed. 
+

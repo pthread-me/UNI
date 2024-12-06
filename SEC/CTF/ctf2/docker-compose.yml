@@ -1,0 +1,24 @@
+services:
+  auth:
+    image: rcopstein/dal-csci4178-ctf2-auth
+    networks:
+      - internal
+
+  uploader:
+    image: rcopstein/dal-csci4178-ctf2-uploader
+    networks:
+      - internal
+    expose:
+      - 80
+    ports:
+      - 5001-5005:5001-5005
+      - 80:80
+
+  codehubwebsite:
+    image: rcopstein/dal-csci4178-ctf2-codehub
+    networks:
+      - internal
+
+networks:
+  internal:
+    name: internal
