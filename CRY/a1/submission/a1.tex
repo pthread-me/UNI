@@ -1,0 +1,357 @@
+\documentclass{article}
+
+% Set the margins of the page.
+\usepackage[a4paper, total={6.5in, 9in}]{geometry}
+
+% A bunch of math packages.
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\usepackage{graphicx} 							% Insert images
+\usepackage{color}									% COLORS!
+\usepackage[shortlabels]{enumitem}	% More enumerate types such as \alph*
+\usepackage{listings}								% Used for code-blocks in latex.
+\usepackage{hyperref}								% Links
+\usepackage{changepage} 						% adjustwidth to add page indents
+% Create links when using ref and table of contents.
+\hypersetup{colorlinks=true, linkcolor=black}
+
+% Replace the indents for paragraphs with empty lines.
+\usepackage[parfill]{parskip}
+
+\usepackage[myheadings]{fancyhdr}
+\usepackage{titleref}
+\makeatletter
+\newcommand*{\currentname}{\TR@currentTitle}
+\makeatother
+
+
+% Number equations with reference to sub sections.
+\numberwithin{equation}{subsection}
+
+\definecolor{lightgray}{RGB}{200, 200, 200}
+
+% Set some style rules for code-blocks
+\lstset{
+	literate={<-}{$\leftarrow$}{2} {\\infty}{$\infty$}{1},
+	backgroundcolor=\color{lightgray}
+,
+	framexleftmargin=2pt,
+	framexrightmargin=2pt,
+	framextopmargin=2pt,
+	framexbottommargin=2pt,
+	frame=single,
+	basicstyle=\fontsize{10pt}{15pt}\selectfont,
+	stepnumber=1,
+	tabsize=4,
+}
+
+
+%increases table padding
+\def\arraystretch{1.5}
+
+
+
+\title{\textbf{CSCI-4116\\Assignment 1}}
+\author{Anas Alhadi\\B00895875}
+
+
+\begin{document}
+
+	\maketitle
+
+	\vspace{20pt}
+	
+	\par{
+		I have read and understood the posted assignment instructions\\
+		Anas,
+	}
+
+	\hrulefill
+
+	\vspace{25pt}
+	\section*{Question 1}
+	
+	\begin{itemize}
+		\item \textbf{Key: } 23
+		\item \textbf{Plain Text: } HIIAMJULESIWISHYOUAGOODCRYPTOCLASS
+	\end{itemize}
+
+	\vspace{25pt}
+	\section*{Question 2}
+		WEARENOTINTERESTEDINTHEPOSSIBILITIESOFDEFEAT
+
+	\vspace{25pt}
+	\section*{Question 3}
+	To prove equivalence, we need to show that congruence relations are reflexive,
+	symmetric and transitive.
+
+	\vspace{10pt}
+	\begin{enumerate}
+		\item \textbf{Reflexivity:} \qquad [\textit{by showing that}: $x \equiv x(\textrm{mod}\ \mathbb{Z}),\ \forall x\in \mathbb{Z}$ ]
+
+			\vspace{5pt}
+			\par{
+				Let $x,m \in \mathbb{Z}$. Observe that:
+		
+			\begin{equation}\notag
+				x-x=0 \quad \textit{AND} \quad 0=m\times0	
+			\end{equation}
+			\begin{equation}\notag
+				\therefore (x-x) = m\times0 \quad \therefore \quad m | (x-x)
+			\end{equation}
+				Thus, $x\equiv x (\textrm{mod}\ m),\ \forall x,m \in \mathbb{Z}$
+			}
+
+	\newpage
+		\item \textbf{Symmetry:} \qquad [\textit{by showing that}: $x \equiv y(\textrm{mod}\ m) \implies y\equiv x(\textrm{mod}\ m) 
+			, \ \forall x,y,m \in \mathbb{Z}$ ]
+		
+		\vspace{5pt}
+		\par{
+			Suppose that $x\equiv y(\textrm{mod}\ m), \quad x,y,m \in \mathbb{Z} $
+		}
+
+		\par{
+			This means that $m|y-x$ (by the definition of congruences) which can be written as:
+		}
+		\begin{equation}\notag
+			y-x = m\times k, \qquad k\in \mathbb{Z}	
+		\end{equation}
+		
+		Then by negating both side:
+		\begin{equation}\notag
+			-y+x = m\times k \times -1 = m\times h,\qquad h=-k
+		\end{equation}
+
+		It follows then:
+		\begin{equation}\notag
+			x-y = m\times h, \qquad h\in \mathbb{Z}	
+		\end{equation}
+		\begin{equation}\notag
+			\therefore \quad m|x-y	
+		\end{equation}
+		\begin{equation}\notag
+			\therefore \quad y\equiv x(\textrm{mod}\ m)	
+		\end{equation}
+
+		\vspace{15pt}
+		\item \textbf{Transitivity:}
+		
+		\vspace{5pt}
+		\par{
+			Suppose that:
+		}
+		\begin{equation}\notag
+			x\equiv y(\textrm{mod}\ m) \qquad AND \qquad y\equiv z(\textrm{mod}\ m), \quad x,y,z,m \in \mathbb{Z}
+		\end{equation}
+
+		This means that:
+		\begin{equation}\notag
+			x=y+km \qquad AND \qquad y=z+lm, \quad l,m \in \mathbb{Z}
+		\end{equation}
+
+		Subsituting $y$ into $x$'s equation
+		\begin{equation}\notag
+			x = z + lm + km = z+nm, \quad n=l+k	
+		\end{equation}
+
+		Therefore:
+		\begin{equation}\notag
+			x = z+nm, \quad n\in \mathbb{Z}
+		\end{equation}
+		\begin{equation}\notag
+				\therefore \quad m|x-z \quad \therefore \quad x \equiv z(\textrm{mod}\ m)	
+		\end{equation}
+	\end{enumerate}
+	
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	\newpage
+	\section*{Question 4}
+	Given:
+	\begin{equation}\notag
+		a \equiv b(\textrm{mod}\ m) \qquad AND \qquad c \equiv d(\textrm{mod}\ m)
+	\end{equation}
+	
+	We have it that:
+	\begin{equation}\tag{1}
+		a=b+km \qquad AND \qquad c=d+hm, \quad k,h \in \mathbb{Z}
+	\end{equation}
+
+	\thispagestyle{fancy}
+	\textbf{Propositions:}
+	\begin{enumerate}[(a)]
+		\setcounter{enumi}{1}
+		\item $a+c \equiv b+d (\textrm{mod}\ m)$
+			
+			\textbf{proof:}
+			\begin{adjustwidth}{15pt}{}
+				\par{
+					Summing the two equations in (1)
+				}
+				\begin{equation}\notag
+					a+c = b + km + d + hm	
+				\end{equation}
+				\begin{equation}\notag
+					(a+c) = (b+d)+lm, \quad l=k+h 	
+				\end{equation}
+			
+				This means that
+				\begin{equation}\notag
+					m | (b+d) - (a+c)
+				\end{equation}
+				\begin{equation}\notag
+					\therefore \quad (a+c) \equiv (b+d)(\textrm{mod}\ m)
+				\end{equation}
+				
+				Which is equivalent to 
+				\begin{equation}\notag
+					(a+c) \equiv b + d(\textrm{mod}\ m)
+				\end{equation}
+			\end{adjustwidth}	
+	
+		\vspace{10pt}
+		\item $a\times c \equiv b\times d (\textrm{mod}\ m)$
+			
+			\textbf{proof:}
+			\begin{adjustwidth}{15pt}{}
+				\par{
+					Repeating the steps in (b) but this time multiplying the 2 equations in (1)
+				}
+				\begin{equation}\notag
+					a\times c = (b+km)(d+hm)	
+				\end{equation}
+				\begin{equation}\notag
+					ac = bd + m(bh + dk + khm)	
+				\end{equation}
+				\begin{equation}\notag
+					ac = bd + mn, \qquad n = bh + dk + khm
+				\end{equation}
+
+				Thus:
+				\begin{equation}\notag
+					m | \ bd - ac \qquad \therefore \qquad ac \equiv bd (\textrm{mod}\ m)
+				\end{equation}
+			\end{adjustwidth}
+	\end{enumerate}
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+
+
+	\section*{Question 5}
+	
+	\begin{enumerate}[(a)]
+		\item -44 , -27 , -10 , 7 , 24 , 41 
+		\item \{0 , 18 , 36 , 3 , 21 , 39 , 6 , 24 , 42 , 9 , 27 , 45 , 12 , 30 , 48 , 15 , 33 \}
+		\vspace{10pt}
+		\item \par{	
+			\begin{adjustwidth}{10pt}{}
+				Since $7$ and $10$ are relativley prime, we can use the CRT to solve the system of
+				congrences for $x$. Which should give us a congruence $x(\textrm{mod}\ 7*10)$ that 
+				is equivalent to the two congruences:
+
+				\begin{enumerate}[(1)]
+					\item $x\equiv 2(\textrm{mod}\ 7)$
+					\item $x\equiv 3(\textrm{mod}\ 10)$
+				\end{enumerate}
+				
+				We can write \textbf{(2)} as $x = 10k +3,\ k\in \mathbb{Z}$. Then subsituting \textbf{(2)} into \textbf{(1)}
+
+				\begin{equation}\notag
+					10k + 3 \equiv 2(\textrm{mod}\ 7)	
+				\end{equation}
+				\begin{equation}\notag
+					10k \equiv -1(\textrm{mod}\ 7)	
+				\end{equation}
+				\begin{equation}\notag
+					10k \equiv 6 (\textrm{mod}\ 7)	
+				\end{equation}
+				
+				We now reduce both sides of the equation by (mod 7). (since 10 is not in the alphabet of modulo 7)
+				
+				\begin{equation}\notag
+					10k (\textrm{mod}\ 7) \equiv 6 (\textrm{mod}\ 7) (\textrm{mod}\ 7)	
+				\end{equation}
+				\begin{equation}\notag
+					3k \equiv 6 (\textrm{mod}\ 7)	
+				\end{equation}
+
+				To find $k$ we need to find a multiplicative inverse of 3 in modulo 7. 
+				(Such that $3*3^{-1} \equiv 1(\textrm{mod}\ 7))$.\\ Observe that $3*5 \equiv 1(\textrm{mod}\ 7)$.
+				Thus $5$ is a multiplicitve inverse \footnote{We can use the Extended Euclidian Algorithm to find
+				the inverse (which i did initially but didn't want to write all the steps)}.
+
+				\vspace{10pt}
+				Multiplying both sides by $5$:
+				\begin{equation}\notag
+					k \equiv 30 (\textrm{mod}\ 7) \equiv 2 (\textrm{mod}\ 7)	
+				\end{equation}
+				So:
+				\begin{equation}\notag
+					k = 7h + 2, \ h\in \mathbb{Z}	
+				\end{equation}
+
+				Finally, subsituting the above equation into \textbf{(2)}
+				\begin{equation}\notag
+					x = 10k +3	
+				\end{equation}
+				\begin{equation}\notag
+					x = (7h+2)*10 + 3
+				\end{equation}
+				\begin{equation}\notag
+					x = 70h + 23, \ h \in \mathbb{Z}	
+				\end{equation}
+
+				Thus:
+				\begin{equation}\notag
+					x \equiv 23 (\textrm{mod}\ 70)	
+				\end{equation}
+				\end{adjustwidth}
+		}
+
+	\end{enumerate}
+
+
+	\newpage
+	\thispagestyle{fancy}
+	\section*{Question 6}
+
+	\textbf{Plain text:}
+	\par{
+		all legistation, all government, all society is founded upon the principle
+		of mutual concession, politeness, comity, courtesy.
+	}
+
+	\textbf{Explaination:}
+	\par{
+		The reason that this cipher is relatively easy to solve is:
+		
+		\begin{enumerate}
+			\item it does not
+		obfuscate any of the possibly unique charactaristics of the plain text. We can easily identify
+		letters (ex: all ``e" s have a unique encoding that doesnt change regardless
+		of the context that the letter occurs in) thus we can use frequency analysis. 
+		\item The cipher also 
+		maintains the length of the words (white space and punctuations are not encrypted) which reduces
+		the search space as each word can be decrypted seperately 		
+	\end{enumerate}
+
+	This means that an encrypted section, say, GWW is now restricted to only $28C3$ combinations
+	of letters(by point 2), which can be further reduced by only considering 
+	combinations where the $2^{nd}$ and $3^{rd}$ letters are the same (by point 1). Finally 
+	since only words are encrypted, this reduces the search space to only english words which fit that
+	category (assuming no spelling errors)
+
+				
+	}
+\end{document}
