@@ -1,0 +1,274 @@
+\documentclass{article}
+
+% Set the margins of the page.
+\usepackage[a4paper, total={6.5in, 9in}]{geometry}
+
+% A bunch of math packages.
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\usepackage{changepage}
+\usepackage{graphicx} 		% Insert images
+\usepackage{color}				% COLORS!
+\usepackage[shortlabels]{enumitem}			% More enumerate types such as \alph*
+\usepackage{listings}			% Used for code-blocks in latex.
+\usepackage{hyperref}
+
+% Create links when using ref and table of contents.
+\hypersetup{colorlinks=true, linkcolor=black}
+
+% Replace the indents for paragraphs with empty lines.
+\usepackage[parfill]{parskip}
+
+\usepackage[myheadings]{fancyhdr}
+\usepackage{titleref}
+\makeatletter
+\newcommand*{\currentname}{\TR@currentTitle}
+\makeatother
+
+% Number equations with reference to sub sections.
+\numberwithin{equation}{subsection}
+
+\definecolor{lightgray}{RGB}{200, 200, 200}
+
+% Set some style rules for code-blocks
+\lstset{
+	literate={<-}{$\leftarrow$}{2} {\\infty}{$\infty$}{1},
+	backgroundcolor=\color{lightgray}
+,
+	framexleftmargin=2pt,
+	framexrightmargin=2pt,
+	framextopmargin=2pt,
+	framexbottommargin=2pt,
+	frame=single,
+	basicstyle=\fontsize{10pt}{15pt}\selectfont,
+	stepnumber=1,
+	tabsize=4,
+}
+
+
+%increases table padding
+\def\arraystretch{1.5}
+
+
+
+\title{\textbf{CSCI-4116\\Assignment 2}}
+\author{Anas Alhadi\\B00895875}
+
+
+\begin{document}
+
+	\maketitle
+
+	
+
+	\vspace{25pt}
+	\section*{Question 1}
+	\subsection*{Part a)}	
+	\par{
+		We know that a residue class $a+m\mathbb{Z}$ is invertible iff $gcd(a,m)=1$.
+		Thus only the classes represented by $\{1,3,5,7,9,11,13,15\}$ are invertible.}
+	\par{
+		Given a residue class $a+m\mathbb{Z}$ the inverse is a residue class 
+		$a^{-1}+m\mathbb{Z}$ such that $a \times a^{-1} \equiv 1(\textrm{mod}\ 16)$.\footnote{I'm using the euclidean algorithm 
+		to find $a^{-1}$ but immiting the steps}
+		So we have it that:
+	}
+
+	\begin{itemize}[]
+		\item{\makebox[4em][l]{$1\times1$}}  $\equiv 1(\textrm{mod}\ 16)$	
+		\item{\makebox[4em][l]{$3\times11$}}  $\equiv 1(\textrm{mod}\ 16)$	
+		\item{\makebox[4em][l]{$5\times13$}}  $\equiv 1(\textrm{mod}\ 16)$	
+		\item{\makebox[4em][l]{$7\times7$}}  $\equiv 1(\textrm{mod}\ 16)$	
+		\item{\makebox[4em][l]{$9\times9$}}  $\equiv 1(\textrm{mod}\ 16)$	
+		\item{\makebox[4em][l]{$15\times15$}}  $\equiv 1(\textrm{mod}\ 16)$	
+	\end{itemize}
+
+	\textbf{aside:}
+	The format $x \times y \equiv 1(\textrm{mod}\ m)$ just means that
+	$y+m\mathbb{Z}$ is the inverse of $x+m\mathbb{Z}$ and vise versa. Since $(\mathbb{Z}/m\mathbb{Z}, \cdot)$ is a commutative monoid
+	we know that $a\cdot a^{-1} = a^{-1}\cdot a$.
+
+	\vspace{15pt}
+	\subsection*{Part b)}
+	\subsubsection*{Group of Units}
+	The group of units is the group of all invertible residue classes, and thus, is the 
+	group of all residue classes $a+15\mathbb{Z}$ where $gcd(a,15)=1$. Then given the inverses(similar to partA):
+	
+	\begin{itemize}
+		\item{\makebox[4em][l]{$1\times1$}}  $\equiv 1(\textrm{mod}\ 15)$	
+		\item{\makebox[4em][l]{$2\times8$}}  $\equiv 1(\textrm{mod}\ 15)$	
+		\item{\makebox[4em][l]{$4\times4$}}  $\equiv 1(\textrm{mod}\ 15)$	
+		\item{\makebox[4em][l]{$7\times13$}}  $\equiv 1(\textrm{mod}\ 15)$	
+		\item{\makebox[4em][l]{$11\times11$}}  $\equiv 1(\textrm{mod}\ 15)$	
+		\item{\makebox[4em][l]{$14\times14$}}  $\equiv 1(\textrm{mod}\ 15)$	
+	\end{itemize}
+
+	\vspace{1pt}
+	We have it that $(\mathbb{Z}/15\mathbb{Z})^* = \{1,2,4,7,8,11,13,14\}$
+	
+	\vspace{10pt}
+	\subsubsection*{Zero Divisors:}
+	We know that the zero divisors of $\mathbb{Z}/m\mathbb{Z}$ are the residue
+	classes where $1<gcd(a,m)<m$. This means that the zero divisors is the set of all
+	residue classes that are not in $(\mathbb{Z}/m\mathbb{Z})^*$ and not the class $0+m\mathbb{Z}$.
+	For $m=15$ the zero divisors are:
+	
+	\begin{itemize}
+		\item $3+15\mathbb{Z}$	
+		\item $5+15\mathbb{Z}$	
+		\item $6+15\mathbb{Z}$	
+		\item $9+15\mathbb{Z}$	
+		\item $10+15\mathbb{Z}$	
+		\item $12+15\mathbb{Z}$	
+	\end{itemize}
+
+	\vspace{25pt}
+	\section*{Question 2}
+	b) is cryptosystem while a) is not.
+
+	\vspace{10pt}
+	\textbf{Reason:}
+	
+	Recall that one properity of a cryptosystem is that for all encryption keys in the keyspace there must exist a decryption key
+	such that decrypting the encryption returns the original plain text.\\
+	In the context of the provided scheme, the mapping from $x (\textrm{mod}\ m)\mapsto kx (\textrm{mod}\ m)$ can be reversed
+	by multiplying $k$ with its inverse in modulo $m$.\\ 
+	Since scheme a) puts no restrictions on $k$ this means that all keys in the keyspace must be invertible in $m$, which is only true
+	when $m$ is a prime number, and $26$ is clearly not. Thus there exists a key where its inverse, $k^{-1}$, is not uniquely identifiable.
+	Therefore there is no gaurentee that $\mathcal{D}_{k^{-1}} (\mathcal{E}_k(p)) = p$, thus the properity is not satisfied. (The restriction in scheme b gaurentees
+	that all keys are invertible).
+
+	\vspace{10pt}
+	\textbf{Cryptosystem's details: (scheme b)}
+	\begin{itemize}
+		\item Plaintext Space: $\mathbb{Z}_{26}$
+		\item Ciphertext Space: $\mathbb{Z}_{26}$
+		\item Key Space: $\{1,3,5,7,9,11,13,15,17,19,21,23,25\}$.\quad \footnote{any value in $(\mathbb{Z}/26\mathbb{Z})^*$ is a valid key for the
+			mapping.}
+	\end{itemize}	
+
+	\newpage
+
+	% Replace the B00 with \currentname to replace it with the section name for 
+	% questions that take up more than 2 pages
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	\section*{Question 3 }	
+	\begin{enumerate}
+		\item $\varphi(2024) = 880$
+		\item $\varphi(2025) = 1080$
+		\item $\varphi(8958) = 2984$
+	\end{enumerate}
+	\footnote*{I wrote a C++ program to calculate Question 3 this for me}
+
+	\vspace{30pt}
+	\section*{Question 4}
+	
+	\underline{\textbf{Plain and Cipher Spaces:}}
+
+	The plain and cipher text can be any string over $\Sigma$. Thus the Plain text and Cipher text space
+	is the set of all possible strings over the alphabet, denoted as $\Sigma ^*$
+
+	\underline{\text{aside:}}
+	\begin{adjustwidth}{1em}{1em}
+	The alphabet $\Sigma = \{A..Z\}$ can be mapped to integers $\mathbb{Z}_{26} = \{0..25\}$ in lexigraphical
+	order.	
+	\end{adjustwidth}
+	
+
+	\vspace{20pt}
+	\underline{\textbf{Encryption and Decryption Functions}}
+	
+	The described encryption and decryption procedures can each be represented as the composition of 
+	2 functions: 
+	\begin{itemize}
+		\item Encryption: function $\mathcal{E}'$ that shifts symbols and a function $R$ that reverses a sequence
+		\item Decryption: function $R$ that reverses a sequence and a function $\mathcal{D}'$ that shifts symbols 
+	\end{itemize}
+
+	\vspace{5pt}
+	First, let a string/sequence $X=\{x_i\}^n_{i=1}$ 
+
+	We now define the functions $\mathcal{E}', \mathcal{D}'$ and $R$ as follows :
+
+	\begin{center}
+	\begin{tabular}{c c c}	
+	$\mathcal{E}'_{k_1, k_2}(X)$: & $x_i+k_2(\textrm{mod}\ 26)$, & $i|2$ \\
+																 & $x_i+k_1(\textrm{mod}\ 26)$, & otherwise\\
+																 & 														 & \\
+		$\mathcal{D}'_{k_1, k_2}(X)$: & $x_i-k_2(\textrm{mod}\ 26)$, & $i|2$ \\
+																 & $x_i-k_1(\textrm{mod}\ 26)$, & otherwise\\
+																 &&\\
+		$R(X)$: 						&			$x_i = x_{n-i+1}$	
+
+	\end{tabular}
+	\end{center}
+
+	\vspace{10pt}
+	We can now write the Encryption and Decryption functions as:
+		\begin{equation}\notag
+			\mathcal{E} = \mathcal{E}_{k_1,k_2}' \circ R				
+		\end{equation}
+		\begin{equation}\notag
+			\mathcal{D} = R \circ \mathcal{D}_{k_1, k_2}'				
+		\end{equation}
+	
+	\newpage
+	\underline{\textbf{Key Space:}}
+
+
+	Observe that the symbols and the operations $\mathcal{E}'$ and $\mathcal{D}'$ that we 
+	perform on them is just the group $(\mathbb{Z}/m\mathbb{Z}, +)$ with $m=26$. So the inverse of
+	any $k (\textrm{mod}\ 26)$ is $-k (\textrm{mod}\ 26)$. This means that any integer value of $k$ is a 
+	valid key. Thus the keyspace is $\mathbb{Z}_{26}$.
+
+	\vspace{20pt}
+	\underline{\textbf{Conclusion:}}
+
+	Since the procedure has:
+	\begin{enumerate}
+		\item a Plain text space
+		\item a Cipher text space
+		\item a Key space
+		\item an Encryption Function
+		\item a Decryption Function
+		\item Satisfies that $\mathcal{D}(\mathcal{E}(p))=p$ (since all keys are invertible)
+	\end{enumerate}
+
+	This means that it is a valid cryptosystem as it satisfies all the properities of one.
+
+	\vspace{30pt}
+	\section*{Question 5}
+	Given the encryption function:
+	\begin{equation}\notag
+		\mathcal{E}(x) = ax +b (\textrm{mod}\ m) 
+	\end{equation}
+	And the restriction that $a$ needs to have a multiplicative inverse in $m$, we have it that for:
+	\begin{itemize}
+		\item \textbf{m=30:}
+
+			$b \in \mathbb{Z}_{30}$ so $b$ can have $30$ different values\\
+			$a \in (\mathbb{Z}/30\mathbb{Z})^*$ so $a$ can have $\varphi(30)=8$
+			
+
+			Thus there are $30*8=240$ possible keys 
+		
+		\item \textbf{m=29:}
+
+			$b \in \mathbb{Z}_{29}$ so $b$ can have $29$ different values\\
+			$a \in (\mathbb{Z}/29\mathbb{Z})^*$ so $a$ can have $\varphi(29)=28$
+			
+
+			Thus there are $29*28 = 812$ possible keys 
+			
+	\end{itemize}
+	
+
+\end{document}
