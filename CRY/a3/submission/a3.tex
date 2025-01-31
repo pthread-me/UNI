@@ -1,0 +1,285 @@
+\documentclass{article}
+
+% Set the margins of the page.
+\usepackage[a4paper, total={6.5in, 9in}]{geometry}
+
+% A bunch of math packages.
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\usepackage{changepage}
+\usepackage{graphicx} 		% Insert images
+\usepackage{color}				% COLORS!
+\usepackage[shortlabels]{enumitem}			% More enumerate types such as \alph*
+\usepackage{listings}			% Used for code-blocks in latex.
+\usepackage{hyperref}
+
+% Create links when using ref and table of contents.
+\hypersetup{colorlinks=true, linkcolor=black}
+
+% Replace the indents for paragraphs with empty lines.
+\usepackage[parfill]{parskip}
+
+\usepackage[myheadings]{fancyhdr}
+\usepackage{titleref}
+\makeatletter
+\newcommand*{\currentname}{\TR@currentTitle}
+\makeatother
+
+% Number equations with reference to sub sections.
+\numberwithin{equation}{subsection}
+
+\definecolor{lightgray}{RGB}{200, 200, 200}
+
+% Set some style rules for code-blocks
+\lstset{
+	literate={<-}{$\leftarrow$}{2} {\\infty}{$\infty$}{1},
+	backgroundcolor=\color{lightgray}
+,
+	framexleftmargin=2pt,
+	framexrightmargin=2pt,
+	framextopmargin=2pt,
+	framexbottommargin=2pt,
+	frame=single,
+	basicstyle=\fontsize{10pt}{15pt}\selectfont,
+	stepnumber=1,
+	tabsize=4,
+}
+
+
+%increases table padding
+\def\arraystretch{1.5}
+
+
+
+\title{\textbf{CSCI-4116\\Assignment 3}}
+\author{Anas Alhadi\\B00895875}
+
+
+\begin{document}
+
+	\maketitle
+
+	
+
+	\vspace{25pt}
+	\section*{Question 1}
+	The process described in the question can be represented as the composition of 
+	the encryption functions of the $2$ affine ciphers, so:
+
+	Let:
+	\begin{equation}\notag
+		F_1: \mathbb{Z}_m	\rightarrow \mathbb{Z}_m
+	\end{equation}
+	\begin{equation}\notag
+		s.t \quad x \mapsto ax + b (\textrm{mod}\ m), \qquad x,a,b\in \mathbb{Z}_m	
+	\end{equation}
+
+	And:
+	\begin{equation}\notag
+		F_2: \mathbb{Z}_m	\rightarrow \mathbb{Z}_m
+	\end{equation}
+	\begin{equation}\notag
+		s.t \quad x \mapsto cx + d (\textrm{mod}\ m), \qquad x,c,d\in \mathbb{Z}_m	
+	\end{equation}
+
+	It follows then that the composition of both encryptions:
+	\begin{equation}\notag
+		F_2 \circ	F_1	: \mathbb{Z}_m \rightarrow \mathbb{Z}_m
+	\end{equation}
+	\begin{equation}\notag
+		s.t \quad x \mapsto c(a(x)+b) + d (\textrm{mod}\ m), \qquad x,a,b,c,d\in \mathbb{Z}_m	
+	\end{equation}
+
+	Which by proposition 2.1 (in the lecture notes) can be written as:
+	\begin{equation}\notag
+		F_2 \circ	F_1	: \mathbb{Z}_m \rightarrow \mathbb{Z}_m
+	\end{equation}
+	\begin{equation}\notag
+		s.t \quad x \mapsto kx + h(\textrm{mod}\ m), \quad k = ca,\ h = cb+d \ \textrm{and}\ x,k,h \in \mathbb{Z}_m	
+	\end{equation}
+
+	\vspace{10pt}
+	Assuming that $k$ and $m$ are relativley prime (so $F_2 \circ F_1$ is a valid encryption function and 
+	the composition is a cryptosystem) then observe that the cryptoanalysis techniques we used in [sec 2.3.2] of
+	the notes still holds. That is the number of possible key combinations for $F_1$, $F_2$ and $F_2 \circ F_1$ is the
+	same since they all have the same restrictions on that values of $a,c,k$ and $b,d,h$ in modulo $m$. Further
+	the plaintext and ciphertext space is the same for the 3 ciphers. So security is not increased.
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	\section*{Question 2}
+
+	\begin{adjustwidth}{2em}{1em}
+		\textbf{Aside:}
+
+		Given an integer $x$ we can represent it as a sequence of decimal values:
+		\begin{equation}\notag
+			(x_n, ...\ ,x_0), \quad n = \lceil log_{10}x \rceil
+		\end{equation}
+		So $x$ can be written as the sum:
+		\begin{equation}\notag
+			x = \sum_{i=0}^n x_i \times 10^i
+		\end{equation}
+	\end{adjustwidth}
+
+	\vspace{10pt}
+	\subsection*{Part a)}
+	Given that $10 \equiv 1 (\textrm{mod}\ 9)$ then by proposition 2.1 (in the lecture notes). 
+
+	We have it that:
+	\begin{equation}\notag
+		10x \equiv x (\textrm{mod}\ 9)
+	\end{equation}
+
+	Further, observe that (again by prop 2.1):
+	\begin{equation}\notag
+		10^n \equiv 1 (\textrm{mod}\ 9), \quad \forall n \in \mathbb{Z}, n\ge 0	
+	\end{equation}
+	It follows then that:
+	\begin{equation}\notag
+		x = \sum_{i=0}^n x_i \times 10^i \equiv \sum_{i=0}^n x_i (\textrm{mod}\ 9)
+	\end{equation}
+
+	That is $x$ is congruent to the sum of all its digits, mod $9$. So $9$ divides $x$
+	iff the sum is equal to $0 (\textrm{mod}\ 9)$.
+
+	\vspace{20pt}
+	\subsection*{Part b)}
+	Given that $10 \equiv -1 (\textrm{mod}\ 11)$ 
+	
+	We make the observation that the congruence can be written in $2$ different ways
+	depending on the parity of the power of $10$. That is:
+
+	\begin{center}
+		\begin{tabular}{c	c c}
+			$10^i$ & $\equiv -1 (\textrm{mod}\ 11)$ & $i = 2m+1, m\in \mathbb{Z}$\\
+						 & $\equiv 1(\textrm{mod}\ 11)$   & Otherwise
+		\end{tabular}
+	\end{center}
+
+	\vspace{10pt}
+	So for an integer $x$ (similar to part a. but now divide the sum based on the parity of $x_i$):
+	\begin{equation}\notag
+		x = \sum_{i=0}^n x_i \times 10^i
+	\end{equation}
+	\begin{equation}\notag
+		= \ \sum_{i=0}^{\frac{n}{2}} x_{2i}	\times 10^{2i} \ + \ \sum_{i=0}^{\frac{n}{2}} x_{2i+1} \times 10^{2i+1}
+	\end{equation}
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	Now applying the congrunce relation on the sum:
+	\begin{equation}\notag
+	 \equiv \sum_{i=0}^{\frac{n}{2}} x_{2i} (\textrm{mod}\ 11) + \sum_{i=0}^{\frac{n}{2}} -x_{2i+1} (\textrm{mod}\ 11)	
+	\end{equation}
+	\begin{equation}\notag
+	 \equiv \sum_{i=0}^{\frac{n}{2}} x_{2i}  + \sum_{i=0}^{\frac{n}{2}} -x_{2i+1}  \quad (\textrm{mod}\ 11)	
+	\end{equation}
+
+	That is, $x$ is congruent to the alternating sum $x_0 - x_1 + x_2 - x_3 \ ... \ $ modulo 11. Thus 11 divies
+	$x$ iff the alternating sum is equal to $0(\textrm{mod}\ 11)$.
+
+	\vspace{30pt}
+	\section*{Question 3}
+	Recall that a monoid, is a semi-group that has a neutral element. The concatination of strings
+	is by definition assosiative. So $(\Sigma ^*, \circ)$ is a semi-group which contains $\epsilon =$ the empty set, 
+	that satisfies the properity:
+	\begin{equation}\notag
+		\epsilon \circ a = a \circ \epsilon = a, \qquad \forall a \in \Sigma^*	
+	\end{equation}
+
+	So $\epsilon$ is a neutral element and $(\Sigma^*, \circ)$ is a monoid.
+
+	\vspace{10pt}
+	On the other hand, for a monoid to be a group, it must satisfy the properity that every element
+	in it is invertibe, however $\epsilon$ is the only invertible element in $(\Sigma^*, \circ)$ with $\epsilon^{-1} = \epsilon$.
+	Thus it is not a group.
+
+	\vspace{30pt}
+	\section*{Question 4}
+	Let $a$ and $b$ be permutations in $S_5$ such that:
+	\begin{equation}\notag
+		a = \begin{Bmatrix}
+					1 & 2 & 3 & 4 & 5 \\
+					2 & 1 & 3 & 4 & 5
+				\end{Bmatrix}	
+	\end{equation}
+	\begin{equation}\notag
+		b = \begin{Bmatrix}
+					1 & 2 & 3 & 4 & 5 \\
+					1 & 5 & 4 & 3 & 2
+				\end{Bmatrix}
+	\end{equation}
+
+	Now observe that the composition of the 2 permutations:
+	\begin{equation}\notag
+		a \circ b = \begin{Bmatrix}
+			1 & 2 & 3 & 4 & 5\\
+			5 & 1 & 4 & 3 & 2
+		\end{Bmatrix} 	
+	\end{equation}
+	\begin{equation}\notag
+		b \circ a = \begin{Bmatrix}
+			1 & 2 & 3 & 4 & 5\\
+			2 & 5 & 4 & 3 & 1
+		\end{Bmatrix}	
+	\end{equation}
+
+	Thus permuting a sequence using $b$ then $a$ may return different values compared to when applying
+	$a$ then $b$. So the group $S_5$ is not commutative.
+
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	\section*{Question 5}
+	\subsection*{Part a)}
+	$n!$ \quad since we are simply permuting on the indicies of the bits, so the permutations are strictly in $S_n$
+
+	\subsection*{Part b)}
+	$n$ \quad We can shift by values $0 \ ... \ n-1$ before we start looping back.
+
+	\subsection*{Part c)}
+	The bitwise negation function is an example of such permutation.
+
+	\vspace{10pt}
+	That is, let a function
+	\begin{equation}\notag
+		f: \{0,1\}^n \rightarrow \{0,1\}^n	
+	\end{equation}
+	\begin{center}
+		\begin{tabular}{c c c c}
+			s.t & $f \ x_i =$ & $ 1$ & when $x_i = 0$ \\
+			 & $f \ x_i =$ & $ 0$ & Otherwise
+		\end{tabular}
+	\end{center}
+
+	\vspace{10pt}
+	Observe that for any sequence $x \in \{0,1\}^n$, flippling the bits will result
+	in a unique sequence $y\in \{0,1\}^n$. Further, every element $y$ in the codomain is mapped
+	to by exactly one element $x$ in the domain (where $x$ is just $y's$ negation). That is to say
+	$f$ is a bijective function that maps $\{0,1\}^n \rightarrow \{0,1\}^n$. Thus $f$ is a permutation.
+
+	However, since $f \ 1000 \mapsto 0111$ this means $f$ is not a valid bit permutation.
+
+	\vspace{10pt}
+	\begin{adjustwidth}{2em}{2em}
+		\textbf{Aside:}
+
+		Bit permutations only permute/``shuffle" the indicies of symbols in a sequence. Permutations
+		are less restrictive as they allow the subsitution of symbols (which as seen above is not always
+		interchangable).
+	\end{adjustwidth}
+\end{document}
