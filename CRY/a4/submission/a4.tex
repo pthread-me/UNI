@@ -1,0 +1,388 @@
+\documentclass{article}
+
+% Set the margins of the page.
+\usepackage[a4paper, total={6.5in, 9in}]{geometry}
+
+% A bunch of math packages.
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\usepackage{changepage}
+\usepackage{graphicx} 		% Insert images
+\usepackage{color}				% COLORS!
+\usepackage[shortlabels]{enumitem}			% More enumerate types such as \alph*
+\usepackage{listings}			% Used for code-blocks in latex.
+\usepackage{hyperref}
+
+% Create links when using ref and table of contents.
+\hypersetup{colorlinks=true, linkcolor=black}
+
+% Replace the indents for paragraphs with empty lines.
+\usepackage[parfill]{parskip}
+
+\usepackage[myheadings]{fancyhdr}
+\usepackage{titleref}
+\makeatletter
+\newcommand*{\currentname}{\TR@currentTitle}
+\makeatother
+
+% Number equations with reference to sub sections.
+\numberwithin{equation}{subsection}
+
+\definecolor{lightgray}{RGB}{200, 200, 200}
+
+% Set some style rules for code-blocks
+\lstset{
+	literate={<-}{$\leftarrow$}{2} {\\infty}{$\infty$}{1},
+	backgroundcolor=\color{lightgray}
+,
+	framexleftmargin=2pt,
+	framexrightmargin=2pt,
+	framextopmargin=2pt,
+	framexbottommargin=2pt,
+	frame=single,
+	basicstyle=\fontsize{10pt}{15pt}\selectfont,
+	stepnumber=1,
+	tabsize=4,
+}
+
+
+%increases table padding
+\def\arraystretch{1.5}
+
+
+
+\title{\textbf{CSCI-4116\\Assignment 4}}
+\author{Anas Alhadi\\B00895875}
+
+
+\begin{document}
+
+	\maketitle
+
+	
+
+	\vspace{25pt}
+	\section*{Question 1a}
+
+	\vspace{10pt}
+	\par{
+		Given a matrix $A$, it's inverse $A^{-1} = (det \ A)^{-1} \times adj \ A$
+	}
+
+	\par{
+		We first check if $A$ is invertible modulo 2, by finding its determinant and verifying
+		that it is relativley prime to 2.
+	}
+
+
+	\vspace{10pt}
+	\subsection*{det A:}
+	\begin{adjustwidth}{2em}{2em}
+		\par{
+			I am using row reduction and fixing $i=3$. Since $j=2$ and $j=3$ both result
+			in $0$ i'll be omitting their calculation step. So:
+		}	
+
+		\begin{equation}\notag 
+			det \ A = (-1)^{3+1} \times 1 \times det \ A_{3,1}
+		\end{equation}
+
+		\begin{equation}\notag
+			det \ A = 1 \times (0-1) = -1
+		\end{equation}
+		
+		\par{
+			We thus have it that $det\ A = -1$ which is congruent to $1 (\textrm{mod}\ 2)$ and has 
+			an inverse $(det\ A )^{-1} = 1$ in modulo 2. So $A$ is invertible
+		}
+	\end{adjustwidth}
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	\subsection*{adj A}
+	\begin{adjustwidth}{2em}{2em}
+		The adjoint matrix of $A$ is the transpose of the matrix of A's cofactors. So we first
+		find the the matrix of cofactors $C$ then transpose it.
+		
+		\begin{tabular}{c c c c}
+			$C_{1,1} =$ & $(-1)^{1+1} \times det \ A_{1,1} =$ & $1\times (0-0) =$  & $0$\\	
+			$C_{1,2} =$ & $(-1)^{1+2} \times det \ A_{1,2} =$ & $-1\times (0-0) =$  & $0$\\	
+			$C_{1,3} =$ & $(-1)^{1+3} \times det \ A_{1,3} =$ & $1\times (0-1) =$  & $-1$\\	
+			$C_{2,1} =$ & $(-1)^{2+1} \times det \ A_{2,1} =$ & $-1\times (0-0) =$  & $0$\\	
+			$C_{2,2} =$ & $(-1)^{2+2} \times det \ A_{2,2} =$ & $1\times (0-1) =$  & $-1$\\	
+			$C_{2,3} =$ & $(-1)^{2+3} \times det \ A_{2,3} =$ & $-1\times (0-1) =$  & $1$\\	
+			$C_{3,1} =$ & $(-1)^{3+1} \times det \ A_{3,1} =$ & $1\times (0-1) =$  & $-1$\\	
+			$C_{3,2} =$ & $(-1)^{3+2} \times det \ A_{3,2} =$ & $-1\times (0-1) =$  & $1$\\	
+			$C_{3,3} =$ & $(-1)^{3+3} \times det \ A_{3,3} =$ & $1\times (1-1) =$  & $0$\\	
+		\end{tabular}
+
+		\vspace{10pt}
+		\par{
+			Giving us the matrix:
+		}
+		\begin{equation}\notag
+			C = \begin{pmatrix}
+						0  & 0  & -1 \\
+						0  & -1 &	1	 \\
+						-1 & 1	& 0
+					\end{pmatrix}	
+		\end{equation}
+
+		\vspace{10pt}
+		\par{
+			And an adjoint matrix:
+		}
+		\begin{equation}\notag
+			adj \ A = C^{T} = \begin{pmatrix}
+														0 & 0 & -1 \\
+														0 & -1 & 1 \\
+														-1 & 1 & 0
+												\end{pmatrix}
+		\end{equation}
+	\end{adjustwidth}
+
+	\vspace{10pt}
+	\subsection*{A$^{-1}$}
+	\begin{adjustwidth}{2em}{2em}
+		\begin{equation}\notag
+			A^{-1} = 1 \times adj \ A \ (\textrm{mod}\ 2) = \begin{pmatrix}
+																										0 & 0 & 1 \\
+																										0 & 1 & 1 \\
+																										1 & 1 & 0
+																									\end{pmatrix}	
+		\end{equation}	
+	\end{adjustwidth}
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	\section*{Question 1b}
+	\par{
+		Again I am using row reduction, and fixing $i=1$.
+	}
+
+	\begin{tabular}{c c c}
+		$(-1)^{1+1} \times 1 \times det \ A_{1,1} =$ & $1 \times (6-1)$ & $= 5$ \\
+		$(-1)^{1+2} \times 2 \times det \ A_{1,2} =$ & $-1 \times (4-3)$ & $= -2$ \\
+		$(-1)^{1+3} \times 3 \times det \ A_{1,3} =$ & $3 \times (2-9)$ & $= -21$
+	\end{tabular}
+
+	\vspace{10pt}
+	\begin{equation}\notag
+		det\ A = 5 -2 - 21 = -18
+	\end{equation}
+
+	\vspace{30pt}
+	\section*{Question 2a}
+	\par{
+		Recall that a matrix $M$ is invirtable in modulo $p$ iff $gcd(det \ M, p) =1$, 
+		thus to find the primes where $M$ is not invirtable, we need to find the prime
+		factors of the $det \ M$
+	}
+
+	\subsection*{det M}
+	\begin{adjustwidth}{2em}{2em}
+		
+	\par{
+		I am using column reduction with $j=1$
+	}
+	
+	\begin{tabular}{c c c}
+		$(-1)^{1+1} \times 1 \times det \ M_{1,1} = $ & $1 \times (980-350) = $ & $630$ \\  
+		$(-1)^{1+2} \times 1 \times det \ M_{1,2} = $ & $-1 \times (392-56) = $ & $-336$ \\  
+		$(-1)^{1+3} \times 1 \times det \ M_{1,3} = $ & $1 \times (50-20) = $ & $30$ \\  
+	\end{tabular}
+
+	\begin{equation}\notag
+		det \ M = 630 - 336 + 30 = 324	
+	\end{equation}
+
+	\end{adjustwidth}
+	\par{
+		The prime factors of $324$ are $2$ and $3$. Thus $M$ is not invertible in $p \in \{2,3\}$.
+	}
+
+	\vspace{30pt}
+	\section*{Question 2b}
+	\par{
+		Just like in Question 2a, we need to find the inverse of the det of M in modulo 101. Then
+		multiply it with the adjoint matrix of M.
+	}
+
+	\subsection*{Inverse of det M}
+	\begin{adjustwidth}{2em}{2em}
+		\par{
+			We can use the Euclidean algorithm to find the inverse. First observe that 
+			$324 \equiv 21 (\textrm{mod}\ 101)$, Thus we find the inverse of $21$ in modulo $101$
+		}
+	\end{adjustwidth}
+	
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+
+	\subsubsection*{Euclidean Alg Steps:}
+	\begin{adjustwidth}{1em}{1em}
+			$101 = 21 (4) + (17)$ \\
+			$21 = 17(1) + (4)$ \\
+			$17 = 4(4) + 1$
+
+			\vspace{10pt}
+			\par{
+				Now moving backwards:
+			}
+
+			$1 = 17 + 4(-1)$ \\
+			$4 = 21 + 17(-1)$ \\
+			$17 = 101 + 21(-4)$
+
+			\vspace{10pt}
+			\par{
+				Subsituting the $2^{nd}$ and $3^{rd}$ equations into the first:
+			}
+
+			$1 = (101 + 21(-4)) + 21(-4) + (101 + 21(-4)) (-4)$
+			$1 = 101(6) + 21(-24)$
+
+			\vspace{10pt}
+			\par{
+				Thus:
+			}
+			\begin{equation}\notag
+				1 \equiv 21 \times -24 (\textrm{mod} \ 101)
+			\end{equation}
+			\begin{equation}\notag
+				1 \equiv 21 \times 77 (\textrm{mod}\ 101)	
+			\end{equation}
+
+			\vspace{10pt}
+			\par{
+				And the inverse of the determinant of M, $(det\ M)^{-1} = 77$
+			}
+	\end{adjustwidth}
+
+	\vspace{20pt}
+	\subsection*{Adjoint matrix of M}
+	\par{
+		Again, we now repeat the exact same steps taken in Question 1a to find the cofactor
+		matrix of A but this time on M. This gives us the cofactor matrix $C$
+	}
+
+	\begin{equation}\notag
+		C = \begin{pmatrix}
+					630 & -171 & 9 \\
+					-336 & 192 & -12 \\
+					30 & -21 & 3
+				\end{pmatrix}	
+	\end{equation}
+
+	\begin{equation}\notag
+		adj\ M = C^T = \begin{pmatrix}
+										630 & -336 & 30 \\
+										-171 & 192 & -21 \\
+										9 & -12 & 3
+									\end{pmatrix}
+	\end{equation}
+	
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	\subsection*{Inverse of M}
+	\begin{center}
+		
+	\begin{tabular}{c c c}
+		$M^{-1} $ &$=$& 	$(det\ M )^{-1} \times adj\ M	\ (\textrm{mod}\ 101)$ \\
+							\\
+							&$=$	&	$ 77 \times 	\begin{pmatrix} 
+										630 & -336 & 30 \\
+										-171 & 192 & -21 \\
+										9 & -12 & 3
+									\end{pmatrix} \ (\textrm{mod}\ 101)$ 
+									\\
+									\\	
+							&$=$& $\begin{pmatrix}
+											48510 & -25872 & 2310 \\
+											-13167 & 14784 & -1617 \\
+											693 & -924 & 231
+										\end{pmatrix}\ (\textrm{mod}\ 101)$
+										\\	
+										\\
+
+							&$\equiv$& $\begin{pmatrix}
+														30 & 85 & 88 \\
+														64 & 38 & 100 \\
+														87 & 86 & 29
+													\end{pmatrix}$
+	\end{tabular}
+	\end{center}
+
+	\vspace{30pt}
+	\section*{Question 3}
+	
+	\begin{center}
+		
+	\begin{tabular}{c c}	
+	$\mathcal{E}:$ & $ (\mathbb{Z}/2\mathbb{Z})^3 \rightarrow  (\mathbb{Z}/2\mathbb{Z})^3$\\
+	$s.t$ & $\mathcal{E}(v) \mapsto Av + b (\textrm{mod}\ 2)$
+	\end{tabular}	
+	\end{center}
+	
+	Where:
+
+	\begin{equation}\notag
+			A = \begin{pmatrix}
+				1 & 0 & 0 \\
+				0 & 1 & 0 \\
+				0 & 0 & 1
+		\end{pmatrix}
+	\end{equation}
+	\begin{equation}\notag
+		b = \begin{pmatrix}
+			1 \\ 1 \\ 1
+		\end{pmatrix}	
+	\end{equation}
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	\section*{Question 4}
+	\begin{equation}\notag
+		A = \begin{pmatrix}
+			0 & 1 & 0 \\
+			1 & 0 & 0 \\
+			0 & 0 & 1
+		\end{pmatrix}	
+	\end{equation}
+	\begin{equation}\notag
+		b = \begin{pmatrix}
+			18 \\ 2 \\ 11
+		\end{pmatrix}	
+	\end{equation}
+
+	\vspace{30pt}
+	\section*{Question 5}
+	\par{
+		The corresponding key stream is:\\
+		$z = 1010011 \ 1010011 \ 1010011$
+	}
+	
+	\par{
+		Resulting in:\\
+		$\mathcal{E}_k(w) = 0100000 \ 0100010 \ 0000010$
+	}
+	\end{document}
