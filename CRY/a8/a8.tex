@@ -1,0 +1,441 @@
+\documentclass{article}
+
+% Set the margins of the page.
+\usepackage[a4paper, total={6.5in, 9in}]{geometry}
+
+% A bunch of math packages.
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\usepackage{graphicx} 		% Insert images
+\usepackage{changepage}
+\usepackage{color}				% COLORS!
+\usepackage[shortlabels]{enumitem}			% More enumerate types such as \alph*
+\usepackage{listings}			% Used for code-blocks in latex.
+\usepackage{hyperref}
+
+% Create links when using ref and table of contents.
+\hypersetup{colorlinks=true, linkcolor=black}
+
+% Replace the indents for paragraphs with empty lines.
+\usepackage[parfill]{parskip}
+
+\usepackage[myheadings]{fancyhdr}
+\usepackage{titleref}
+\makeatletter
+\newcommand*{\currentname}{\TR@currentTitle}
+\makeatother
+
+% Number equations with reference to sub sections.
+\numberwithin{equation}{subsection}
+
+\definecolor{lightgray}{RGB}{200, 200, 200}
+
+% Set some style rules for code-blocks
+\lstset{
+	literate={<-}{$\leftarrow$}{2} {\\infty}{$\infty$}{1},
+	backgroundcolor=\color{lightgray}
+,
+	framexleftmargin=2pt,
+	framexrightmargin=2pt,
+	framextopmargin=2pt,
+	framexbottommargin=2pt,
+	frame=single,
+	basicstyle=\fontsize{10pt}{15pt}\selectfont,
+	stepnumber=1,
+	tabsize=4,
+}
+
+
+%increases table padding
+\def\arraystretch{1.5}
+
+
+
+\title{\textbf{CSCI-4116\\Assignment 8}}
+\author{Anas Alhadi\\B00895875}
+
+
+\begin{document}
+
+	\maketitle
+
+	\vspace{20pt}
+	
+	\hrulefill
+
+	\vspace{25pt}
+	\section*{Question 1}
+	\subsection*{Part A}
+	
+	\textbf{gcd(237, 124):}
+
+	\begin{tabular}{c c c c c c c}
+		$237$	&	$=$	&	$124$	&	$\times$	&	\underline{$1$}	&	$+$	&	\underline{$113$}	\\
+		$124$	&	$=$	&	$113$	&	$\times$	&	\underline{$1$}	&	$+$	&	\underline{$11$}	\\
+		$113$	&	$=$	&	$11$	&	$\times$	&	\underline{$10$}	&	$+$	&	\underline{$3$}	\\
+		$11$	&	$=$	&	$3$	&	$\times$	&	\underline{$3$}	&	$+$	&	\underline{$2$}	\\
+		$3$	&	$=$	&	$2$	&	$\times$	&	\underline{$1$}	&	$+$	&	\underline{$1$}	\\
+	\end{tabular}
+
+	\vspace{5pt}
+	So $gcd(237, 124) = 1$
+
+	\vspace{20pt}
+	\subsection*{Part B}
+	For each step in the Euclidean algorithm, we rearrange the equation to solve for the remainder. So:
+
+	\begin{tabular}{c c c c c}
+		$113$	&	$=$	&	$237$	&	$+$	&	$124(-1)$	\\
+		$11$	&	$=$	&	$124$	&	$+$	&	$113(-1)$	\\
+		$3$	&	$=$	&	$113$	&	$+$	&	$11(-10)$	\\
+		$2$	&	$=$	&	$11$	&	$+$	&	$3(-3)$	\\
+	\end{tabular}
+
+
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	We now solve for 1, subsitutting the above equations until we get the form $1=237x+124y$
+
+	\begin{center}
+		\begin{tabular}{c c c}
+			$1$	&	$=$	&	$3+2(-1)$	\\
+				&	$=$	&	$113+11(-10) + (-1)[11+3(-3)]$	\\
+				&	$=$	&	$113+11(-11) + 3(3)$	\\\\
+			$1$	&	$=$	&	$237 + 124(-1) + (-11)[124+113(-1)] + (3)[113+11(-10)]$	\\
+				&	$=$	&	$237+124(-12) +113(14) + 11(-30)$	\\\\
+			$1$	&	$=$	&	$237+124(-12)+(14)[237+124(-1)] + (-30)[124+113(-1)]$	\\
+				&	$=$	&	$237(15) + 124(-56) + 113(30)$	\\\\
+			$1$	&	$=$	&	$237(15)+124(-56)+(30)[237+124(-1)]$\\
+				&	$=$	&	$237(45)+124(-86)$\\
+		\end{tabular}
+	\end{center}
+
+	\vspace{10pt}
+	So the $gcd(237,124) = 237(45)+124(-86)$
+
+	\newpage
+		\fancyhead[L]{\text{B00895875}}
+		\fancyhead[R]{\text{Anas Alhadi}}
+		\thispagestyle{fancy}
+
+	\section*{Question 2}
+	\subsection*{Part A}
+	Given $17x+101y=1$, we can solve for x and y via the Extended Euclidean Algorithm. So first we find the gcd(17,101) using
+	the Euclidean Algorithm, then trace back the equations.
+
+	\vspace{10pt}
+
+	\textbf{gcd(17,101)}
+	
+	\begin{tabular}{c c c c c c c}
+		$101$	&	$=$	&	$17$	&	$\times$	&	\underline{$5$}	&	$+$	&	\underline{$16$}	\\
+		$17$	&	$=$	&	$16$	&	$\times$	&	\underline{$1$}	&	$+$	&	\underline{$1$}	\\
+	\end{tabular}
+
+	\vspace{15pt}
+
+	\textbf{Solving for the remainders}
+	
+	\begin{tabular}{c c c c c}
+		$16$	&	$=$	&	$101$	&	$+$	&	$17(-5)$	\\
+	\end{tabular}
+
+	\vspace{15pt}
+	\textbf{Solving for 1}
+
+	\begin{tabular}{c c c c c}
+		$1$	&	$=$	&	$17$	&	$+$	&	$16(-1)$	\\
+				&	$=$	&	$17$	&	$+$	&	$(-1)[101+17(-5)]$	\\
+			&	$=$	&	$17(6)$	&	$+$	&	$101(-1)$	\\
+	\end{tabular}
+
+	So $(x,y) = (6,-1)$
+
+	\vspace{25pt}
+	\subsection*{Part B}
+	To find the inverse, we simply apply modulo 101, to the equation $1=17(6)+101(-1)$. So:
+
+	\begin{equation}\notag
+		17(6) + 101(-1) \quad (\textrm{mod}\ 101) = 1 (\textrm{mod}\ 101)	
+	\end{equation}
+
+	\begin{equation}\notag
+		17(6) + 0 \equiv 1 (\textrm{mod}\ 101)	
+	\end{equation}
+
+	\begin{equation}\notag
+		17(6) \equiv 1 (\textrm{mod}\ 101)	
+	\end{equation}
+
+	Thus the inverse of 17 in $\mathbb{Z}/101\mathbb{Z}$ is 6
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	\section*{Question 3}
+	Similar to Question 2, we: find the gcd $\rightarrow$ solve for the remainders $\rightarrow$ solve for the gcd
+	
+	\subsection*{Part A}
+	\textbf{gcd(357, 1234)}
+
+	\begin{tabular}{c c c c c c c}
+		$1234$	&	$=$	&	$357$	&	$\times$	&	\underline{$3$}	&	$+$	&	\underline{$163$}	\\
+		$357$	&	$=$	&	$163$	&	$\times$	&	\underline{$2$}	&	$+$	&	\underline{$31$}	\\
+		$163$	&	$=$	&	$31$	&	$\times$	&	\underline{$5$}	&	$+$	&	\underline{$8$}	\\
+		$31$	&	$=$	&	$8$	&	$\times$	&	\underline{$3$}	&	$+$	&	\underline{$7$}	\\
+		$8$	&	$=$	&	$7$	&	$\times$	&	\underline{$1$}	&	$+$	&	\underline{$1$}	\\
+	\end{tabular}
+
+	\vspace{15pt}
+	\textbf{Solve for the Remainders:}
+
+	\begin{tabular}{c c c c c}
+		$163$	&	$=$	&	$1234$	&	$+$	&	$357(-3)$	\\
+		$31$	&	$=$	&	$357$	&	$+$	&	$163(-2)$	\\
+		$8$	&	$=$	&	$163$	&	$+$	&	$31(-5)$	\\
+		$7$	&	$=$	&	$31$	&	$+$	&	$8(-3)$	\\
+	\end{tabular}
+
+	\vspace{15pt}
+	\textbf{Solve for the gcd:}
+	
+	\begin{center}
+		\begin{tabular}{c c c c c}
+			$1$	&	$=$	&	$8+7(-1)$	\\
+					&	$=$	&	$163+31(-5) + (-1)[31+8(-3)]$	\\\\
+			$1$	&	$=$	&	$163+31(-6)+8(3)$	\\
+				&	$=$	&	$1234+357(-3) + (-6)[357+163(-2)] + (3)[163+31(-5)]$	\\\\
+			$1$	&	$=$	&	$1234+357(-9) + 163(15) + 31(-15)$	\\
+					&	$=$	&	$1234 + 357(-9) + (15)[1234+357(-3)]+ (-15)[357+163(-2)]$ \\\\
+			$1$	&	$=$	&	$1234(16) + 357(-69) + 163(30)$	\\
+					&	$=$	&	$1234(16) + 357(-69) + (30)[1234+357(-3)]$	\\\\
+			$1$	&	$=$	&	$1234(46) + 357(-159)$	\\
+		\end{tabular}
+	\end{center}
+
+	\vspace{15pt}
+	Applying modulo $1234$ to both sides of the equation gives:
+	\begin{equation}\notag
+		357(-159) \equiv 1 (\textrm{mod}\ 1234)	
+	\end{equation}
+ 
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	And
+	\begin{equation}\notag
+		357(1075) \equiv 1(\textrm{mod}\ 1234)
+	\end{equation}
+
+	So the inverse of $357$ in $\mathbb{Z}/1234\mathbb{Z}$ is $1075$
+
+	\vspace{25pt}
+	\subsection*{Part B}
+	\textbf{gcd(3125, 9987)}
+
+	\begin{tabular}{c c c c c c c}
+		$9987$	&	$=$	&	$3125$	&	$\times$	&	\underline{$3$}	&	$+$	&	\underline{$612$}	\\
+		$3125$	&	$=$	&	$612$	&	$\times$	&	\underline{$5$}	&	$+$	&	\underline{$65$}	\\
+		$612$	&	$=$	&	$65$	&	$\times$	&	\underline{$9$}	&	$+$	&	\underline{$27$}	\\
+		$65$	&	$=$	&	$27$	&	$\times$	&	\underline{$2$}	&	$+$	&	\underline{$11$}	\\
+		$27$	&	$=$	&	$11$	&	$\times$	&	\underline{$2$}	&	$+$	&	\underline{$5$}	\\
+		$11$	&	$=$	&	$5$	&	$\times$	&	\underline{$2$}	&	$+$	&	\underline{$1$}	\\
+	\end{tabular}
+
+	\vspace{15pt}
+	\textbf{Solve for the Remainders:}
+
+	\begin{tabular}{c c c c c}
+		$612$	&	$=$	&	$9987$	&	$+$	&	$3125(-3)$	\\
+		$65$	&	$=$	&	$3125$	&	$+$	&	$612(-5)$	\\
+		$27$	&	$=$	&	$612$	&	$+$	&	$65(-9)$	\\
+		$11$	&	$=$	&	$65$	&	$+$	&	$27(-2)$	\\
+		$5$	&	$=$	&	$27$	&	$+$	&	$11(-2)$	\\
+	\end{tabular}
+
+	\vspace{15pt}
+	\textbf{Solve for the gcd:}
+	
+	\begin{center}
+		\begin{tabular}{c c c c c}
+			$1$	&	$=$	&	$11+5(-2)$	\\
+					&	$=$	&	$65+27(-2) + \ (-2)[27+11(-2)]$	\\\\
+			$1$		&	$=$	&	$65+27(-4) + 11(4)$	\\
+						&	$=$	&	$3125+612(-5)+ \ (-4)[612+65(-9)] + \ (4)[65+27(-2)]$	\\\\
+			$1$		&	$=$	&	$3125+612(-9) +65(40) + 27(-8)$	\\
+						&	$=$	&	$3125+(-9)[9987+3125(-3)] + \ (40)[3125+612(-5)] + \ (-8)[612+65(-9)]$	\\\\
+			$1$		&	$=$	&	$9987(-9) + 3125(68) + 612(-208) + 65(72)$	\\
+						&	$=$	&	$9987(-9) + 3125(68) + \ (-208)[9987+3125(-3)] + \ (72)[3125+612(-5)]$	\\\\
+		\end{tabular}
+	\end{center}
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	\begin{center}
+		\begin{tabular}{c c c c c}
+				$1$		&	$=$	&	$9987(-217) + 3125(764) + 612(-360)$	\\
+				&	$=$	&	$9987(-217) + 3125(764) + \ (-360)[9987+3125(-3)]$	\\\\
+				$1$&	$=$	&	$9987(-577) + 3125(1844)$\\
+		\end{tabular}
+	\end{center}
+
+	\vspace{15pt}
+	Applying modulo 9987 to both sides of the equation yields:
+
+	\begin{equation}\notag
+		3125(1844) \equiv 1 (\textrm{mod}\ 9987)	
+	\end{equation}
+
+	Thus the inverse of $3125$ in $\mathbb{Z}/9987\mathbb{Z}$ is $1844$
+
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	\section*{Question 4}
+	
+	The group of units mod 15 is the set:\\ $\{1+15\mathbb{Z}, \ 2+15\mathbb{Z}, \ 4+15\mathbb{Z}, \ 7+15\mathbb{Z}, \ 8+15\mathbb{Z}
+	, \ 11+15\mathbb{Z}, \ 13+15\mathbb{Z}, \ 14+15\mathbb{Z}\}$
+	
+	\vspace{10pt}
+	\begin{center}
+		\begin{tabular}{|c||c c c c c c c c c c c c c c c|}
+			\hline
+			$k$ &																$0$	&	$1$	&	$2$	&	$3$	&	$4$	&	$5$	&	$6$	&	$7$	&	$8$	&	$9$	&	$10$	&	$11$	&	$12$	&	$13$	&	$14$	\\\hline\hline
+			$2^k(\textrm{mod} \ 14)$&	$1$	&	$2$	&	$4$	&	$8$	& $\not1$ &$$&&&&&&&&&\\\hline
+			$4^k(\textrm{mod} \ 14)$	&	$1$	&	$4$	&	$\not1$ &$$&&&&&&&&&&&\\\hline
+			$7^k(\textrm{mod} \ 14)$	&	$1$	&	$7$	& $4$	&	$13$	&	$\not1$	&&&&&&&&&&\\\hline
+			$8^k(\textrm{mod} \ 14)$	&	$1$	&	$8$	&	$4$	&	$2$	&	$\not1$&&&&&&&&&&\\\hline
+			$11^k(\textrm{mod} \ 14)$	&	$1$	&	$11$	&	$\not1$	&&&&&&&&&&&&\\\hline
+			$13^k(\textrm{mod} \ 14)$	&	$1$	&	$13$	&	$4$	&	$7$	&	$\not1$	&&&&&&&&&&\\\hline
+			$14^k(\textrm{mod} \ 14)$	&	$1$	&	$14$	&	$\not1$	&&&&&&&&&&&&\\\hline
+		\end{tabular}
+	\end{center}
+
+	\vspace{15pt}
+	Thus the order of the residue classes in $G=(\mathbb{Z}/15\mathbb{Z})^*$ is:
+	\begin{itemize}
+		\item $Ord_G(1+15\mathbb{Z}) = 1$
+		\item $Ord_G(2+15\mathbb{Z}) = 4$
+		\item $Ord_G(4+15\mathbb{Z}) =2 $
+		\item $Ord_G(7+15\mathbb{Z}) = 4$
+		\item $Ord_G(8+15\mathbb{Z}) = 4$
+		\item $Ord_G(11+15\mathbb{Z}) = 2$
+		\item $Ord_G(13+15\mathbb{Z}) = 4$
+		\item $Ord_G(14+15\mathbb{Z}) = 2$
+	\end{itemize}
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+	
+	\section*{Question 5}
+	\subsection*{Part A}
+	The subgroup generated by $2+17\mathbb{Z}$ is: \quad
+	$\{1,2,4,8,16,15,13,9\}$
+
+	\vspace{25pt}
+	\subsection*{Part B}
+	We are asked to find the order of $<g>$. Given that $G=(\mathbb{Z}/1237\mathbb{Z})^*$ and $g=2+1237\mathbb{Z} \in G$.
+
+		
+	\begin{enumerate}
+		\item The order of $G = \varphi(1237) = 1236$
+		\item We know by Lagrange's Theorem that the order of $<g>$ divides the order of $G$. Thus we only need to check
+			values $e \in \{0...1236\}, \ s.t \ e | 1236$.
+			\begin{adjustwidth}{2em}{1em}
+				To find the possible values of $e$ we will need to factor 1236. Those being:
+				\begin{itemize}
+					\item $ 1\times 1236$
+					\item $ 2\times 618$
+					\item $ 3\times 412$
+					\item $ 6\times 206$
+					\item $ 12\times 103$
+				\end{itemize}
+			\end{adjustwidth}
+
+		\item We know by Euler's Theorem that if the $gcd(a,m)=1$ then $a^{\varphi(m)}\equiv 1 (\textrm{mod}\ m)$. 
+		\\Thus since $gcd(2,1237) =1$ we know that $2^{1236} \equiv 1(\textrm{mod}\ 1237)$
+	
+	\item Point 3. tells us that for $e=1236$ we have $g^{1236} = 1$. We now need to test the remaing factors of 1236 to check if
+			any satisfy the inequality $g^e=1, \ e\in \{1,2,3,4,6,12,618,412,309,206,103\}$. If so the minimum value of $e$ that satisfies it 
+			will be the orders \footnote{I used Modular Exponentiation to find the congruneces of the powers of 2}.
+
+			\begin{adjustwidth}{2em}{1em}
+				\begin{itemize}
+					\item $2^1 \equiv 2(\textrm{mod}\ 1237)$ 
+					\item $2^2 \equiv 4(\textrm{mod}\ 1237)$ 
+					\item $2^3 \equiv 8(\textrm{mod}\ 1237)$ 
+					\item $2^4 \equiv 16(\textrm{mod}\ 1237)$ 
+					\item $2^6 \equiv 64(\textrm{mod}\ 1237)$ 
+					\item $2^{12} \equiv 385(\textrm{mod}\ 1237)$ 
+					\item $2^{103} \equiv 516(\textrm{mod}\ 1237)$ 
+					\item $2^{206} \equiv 301(\textrm{mod}\ 1237)$ 
+					\item $2^{309} \equiv 691(\textrm{mod}\ 1237)$ 
+					\item $2^{412} \equiv 300(\textrm{mod}\ 1237)$ 
+					\item $2^{618} \equiv 1236(\textrm{mod}\ 1237)$ 
+				\end{itemize}
+			\end{adjustwidth}
+\end{enumerate}
+
+\vspace{10pt}
+Thus the mimimum (and only) value of $e$ that satisfies both $g^e=1$ and $e|Ord(G)$ is $e=1236$ \\thus $Ord_G(2+1237\mathbb{Z}) = 1236$ 
+
+\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+
+	\section*{Question 6}
+	\subsection*{Part A}
+	Given $2^{122} (\textrm{mod}\ 13)$. Observe that:
+	\begin{enumerate}
+	\item $gcd(2, 13) =1$ so by Fermat's Theorem $2^{\varphi(13)} = 2^{12} \equiv 1 (\textrm{mod}\ 13)$
+	\item $122 = 10(12) + 2$ \quad so \quad $2^{122} = (2^{12})^{10} \times 2^2$ 
+	\end{enumerate}
+
+	\vspace{15pt}
+	It follows then that:
+	\begin{equation}\notag
+		2^{122} \equiv (1)^{10} \times 2^2 (\textrm{mod}\ 13)	
+	\end{equation}
+	\begin{equation}\notag
+		2^{122} \equiv 4(\textrm{mod}\ 13)
+	\end{equation}
+
+	\vspace{25pt}
+	\subsection*{Part B}
+	Finding the last digit of a number is equivalent to applying modulo 10 to it.\footnote{Kinda funny cause i didnt notice this initially
+	but took 10 as an example to start with and only realized half way through :)}
+
+	Given that $gcd(3,10) = 1$ then by Euler's Theorem $3^{\varphi(10)}  = 3^4 \equiv 1 (\textrm{mod}\ 10)$
+
+	It follows then that:
+	\begin{equation}\notag
+		3^{400} = (3^4)^{100} \equiv 1^{100} (\textrm{mod}\ 10)	
+	\end{equation}
+	\begin{equation}\notag
+		3^{400} \equiv 1 (\textrm{mod}\ 10)	
+	\end{equation}
+
+	So the last digit is 1
+\end{document}
