@@ -1,0 +1,120 @@
+\documentclass[cspaper]{IEEEtran}
+
+% Set the margins of the page.
+\usepackage[a4paper, total={6.5in, 9in}]{geometry}
+
+% A bunch of math packages.
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\usepackage{graphicx} 		% Insert images
+\usepackage{changepage}
+\usepackage{color}				% COLORS!
+\usepackage[shortlabels]{enumitem}			% More enumerate types such as \alph*
+\usepackage{listings}			% Used for code-blocks in latex.
+\usepackage{hyperref}
+
+% Create links when using ref and table of contents.
+\hypersetup{colorlinks=true, linkcolor=black}
+
+% Replace the indents for paragraphs with empty lines.
+\usepackage[parfill]{parskip}
+
+\usepackage[myheadings]{fancyhdr}
+\usepackage{titleref}
+\makeatletter
+\newcommand*{\currentname}{\TR@currentTitle}
+\makeatother
+
+% Number equations with reference to sub sections.
+\numberwithin{equation}{subsection}
+
+\definecolor{lightgray}{RGB}{220, 220, 220}
+
+%frame=single,
+%basicstyle=\fontsize{10pt}{15pt}\selectfont,
+%stepnumber=1,
+%backgroundcolor=\color{backcolour},   
+%commentstyle=\color{codegreen},
+%keywordstyle=\color{magenta},
+%numberstyle=\tiny\color{codegray},
+%stringstyle=\color{codepurple},
+\lstdefinestyle{mystyle}{
+	%basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+		literate={<-}{$\leftarrow$}{2} {\\infty}{$\infty$}{1} {\\equiv}{$\equiv$}{1}
+		{\\IntegerModm}{$(\mathbb{Z}/m\mathbb{Z})$}{7} {\\in}{$\in$}{1} {\\varphim}{$\varphi(m)$}{5}
+		{\\integers}{$\mathcal{Z}$}{1} {\\IntegerModn}{$(\mathbb{Z}/n\mathbb{Z})$}{7},
+		backgroundcolor=\color{lightgray},
+		frame=single,
+		framesep=0pt,
+		xleftmargin=20pt,
+		framexleftmargin=0pt,
+		framexrightmargin=-30pt,
+		framextopmargin=2pt,
+		framexbottommargin=2pt
+}
+
+% Set some style rules for code-blocks
+\lstset{style=mystyle}
+
+
+%increases table padding
+\def\arraystretch{1.5}
+
+
+
+\title{Title Placeholder}
+\author{Anas Alhadi\\B00895875}
+
+
+\begin{document}
+
+	\maketitle
+	
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+
+	\par{
+		\emph{Abstract} -- Static Context Header Compression (SCHC) is an adaptation layer
+		capable of achieving large compression ratios on upper layer protocol headers (ie: IPv6, CoAP) by exploiting the presistent and predictable nature of 
+		IoT networks to make use of predefined static compression rules that act as a blueprints for the 
+		expected network traffic in which a sender can avoid transmitting the entire packet when a matching blueprint is present and instead sends a pointer to the rule. The 
+		afformentioned properities that SCHC builds on however makes it unideal for use in mobile networks in which the metadata we want to compress is variable.
+		We look into the prospects of introducing dynamic updating of rules by evaluating the performance of scoring/weight assignment heuristics on
+		network traffic to predict rules with improved packet coverage. Our results show that in the presence of reasonable assumptions an overall 
+		improvement on the average header size is possible. 
+	}
+
+	\section{Introduction}
+	\par{
+			The recent boom of IoT based networks facilitaed the need for a shared networking layer to enable the seemless 
+			communication between various types of devices regardless of their underlying communication medium and protocols. As such IPv6 
+			has been widley adopted to play that role \textcolor{red}{cite IoV paper}. Yet, this in itself introduced a new set of challenges, specifically for long distance low-power
+			communications (ie LoRaWAN networks) that have physical restrictions on the maximum transmission unit of which the size of IPv6 headers often exceeds. Moreover, the 
+	}	
+	\section{BACKGROUND AND RELATED WORK}
+	\section{METHODOLOGY}
+	\subsection{Testbed}
+	\subsection{Implementation}
+	\subsection{Performance Test}
+
+	\section{Results And Analysis}
+
+	\section{Conclusion}
+\end{document}
