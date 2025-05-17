@@ -1,0 +1,298 @@
+\documentclass{article}
+
+% Set the margins of the page.
+\usepackage[a4paper, total={6.5in, 9in}]{geometry}
+
+% A bunch of math packages.
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\usepackage{changepage}
+\usepackage{graphicx} 		% Insert images
+\usepackage{color}				% COLORS!
+\usepackage[shortlabels]{enumitem}			% More enumerate types such as \alph*
+\usepackage{listings}			% Used for code-blocks in latex.
+\usepackage{hyperref}
+
+% Create links when using ref and table of contents.
+\hypersetup{colorlinks=true, linkcolor=black}
+
+% Replace the indents for paragraphs with empty lines.
+\usepackage[parfill]{parskip}
+
+\usepackage[myheadings]{fancyhdr}
+\usepackage{titleref}
+\makeatletter
+\newcommand*{\currentname}{\TR@currentTitle}
+\makeatother
+
+% Number equations with reference to sub sections.
+\numberwithin{equation}{subsection}
+
+\definecolor{lightgray}{RGB}{200, 200, 200}
+
+% Set some style rules for code-blocks
+\lstset{
+	literate={<-}{$\leftarrow$}{2} {\\infty}{$\infty$}{1},
+	backgroundcolor=\color{lightgray}
+,
+	framexleftmargin=2pt,
+	framexrightmargin=2pt,
+	framextopmargin=2pt,
+	framexbottommargin=2pt,
+	frame=single,
+	basicstyle=\fontsize{10pt}{15pt}\selectfont,
+	stepnumber=1,
+	tabsize=4,
+}
+
+
+%increases table padding
+\def\arraystretch{1.5}
+
+
+
+\title{\textbf{CSCI-4116\\Assignment 5}}
+\author{Anas Alhadi\\B00895875}
+
+
+\begin{document}
+
+	\maketitle
+
+	
+
+	\section*{Question 1}
+	Let $a=15$ and $b=18$, so $gcd(15,18) = 3$. 
+	
+	\vspace{10pt}
+	Now $\varphi(15\times18)=\varphi(270)$: 
+
+	\begin{tabular}{c c c c}
+		$\varphi(270)$	&	$=$	&	$270 \times \prod_{p|270}(1-\frac{1}{p})$	&	\quad where $p \in \mathbb{P}$ \\
+										&	$=$	&	$270 \times (1-\frac{1}{2}) \times (1- \frac{1}{3}) \times (1-\frac{1}{5})$	&	\\
+										&	$=$	&	$270 \times \frac{1}{2} \times \frac{2}{3} \times \frac{4}{5}$	& \\
+										& $=$	&	$72$
+	\end{tabular}
+
+	\vspace{15pt}
+	While $\varphi(15) \times \varphi(18)$
+
+	\begin{tabular}{c c c}
+		$\varphi(15)$	&	$=$	&	$15 \times \frac{2}{3} \times \frac{3}{5}$ \\
+									&	$=$	&	$8$ \\
+									&			&			\\
+		$\varphi(18)$	&	$=$	&	$18 \times \frac{1}{2} \times \frac{2}{3}$ \\
+									&	$=$	&	$6$
+
+	\end{tabular}
+
+	\vspace{15pt}
+	And $72 \not = 48$
+	
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+
+	\section*{Question 2}
+	\begin{tabular}{c c c}
+		$S$			&	$=$	&	$\{HH, HT, TH, TT\}$ \\	
+		$p(HH)$	&	$=$	&	$\frac{1}{4}$ \\
+		$p(HT)$	&	$=$	&	$\frac{1}{4}$ \\
+		$p(TH)$	&	$=$	&	$\frac{1}{4}$ \\
+		$p(TT)$	&	$=$	&	$\frac{1}{4}$ \\
+	\end{tabular}
+
+	The event of flipping at least 1 tail, is the subset $e = \{HT, TH, TT\}$. Which is equivelent
+	to the event of not getting 2 Heads. So $e =S \setminus \{HH\}$
+	
+	\begin{tabular}{c c c}
+		$p(e)$	&	$=$	&	$p(S) - p(HH)$ \\
+						&	$=$	&	$1-\frac{1}{4}$ \\
+						&	$=$	&	$\frac{3}{4}$
+	\end{tabular}
+
+	\vspace{30pt}
+	\section*{Question 3}
+	Let $R = \{1,2,3,4,5,6\}$. Then the sample space of rolling 2 dice is $S = R^{2}$. 
+	
+	\vspace{5pt}
+	The question describes 2 events in $S$:
+
+	\begin{tabular}{c c c}
+		$e_1$	&	$=$	&	$\{(a,b)\in S, \textrm{where}\ a \not= b\}$ \\
+		$e_2$	&	$=$	&	$\{(a,b)\in S, \textrm{where}\ 2|(a+b)\}$
+	\end{tabular}
+
+	And asks for the probability that $e_1$ occurs given $e_2$. So $p(e_1|e_2)$, which
+	is equivelent to the probability of event $e_1$ occuring when the sample space is restricted to the set $e_2$
+
+	Now observe that $e_2$ is the event in which $a$ and $b$ have the same parity. Thus:
+	
+	\begin{tabular}{c c c c}
+		$e_2$	&	$=$	&	$\{(1,1), (1,3), (1,5),$ 	\\
+					& 		&		$(2,2), (2,4), (2,6),$	\\ 
+					&			&		$(3,1), (3,3), (3,5),$	\\
+					&			&		$(4,2), (4,4), (4,6),$	\\
+					&			&		$(5,1), (5,3), (5,5),$	\\
+					&			&		$(6,2), (6,4), (6,6)\}$	\\
+	\end{tabular}
+
+	We know that $S$ follows a uniform distribution, so the probabilty of each elementary event is $\frac{1}{|S|}$. Since $e_2$ is a
+	subset of $S$ this means that the elements in $e_2$ are also uniformally distributed, that is the probability
+	of each elementary event in $e_2$ is $\frac{1}{|e_2|}$
+
+	Finally, the probablity of $a\not=b$ in $e_2$ is equal to $1-(\textrm{probability that }a=b)$.
+
+	So:
+
+	\begin{tabular}{c c c}	
+		$p(e_1 | e_2)$ &$=$& $1-\frac{6}{|e_2|}$ \\
+									&$=$& $1-\frac{6}{18}$		\\
+									&$=$&	$\frac{2}{3}$
+	\end{tabular}
+
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	\section*{Question 4}
+	\subsection*{Part a)}
+	We know that the probability $q$ of no two people having the same birthday is:
+	
+	\begin{tabular}{c c c c}
+		$q$	&	$\le$	& $exp(- \frac{k(k-1)}{2n})$
+	\end{tabular}
+
+	The probability $p$ of two people having the same birthday is then $p=1-q$. In our case we solve for $p\ge0.9$ and $n=365$
+
+	\vspace{10pt}
+	So:
+
+	\begin{equation}\notag
+		q	\le	exp(\frac{-k^2+k}{720}) \le 0.1
+	\end{equation}
+	\begin{equation}\notag
+		ln(0.1)\ge \frac{-k^2+k}{720}
+	\end{equation}
+
+	\vspace{10pt}
+	Rearranging the inequality:
+
+	\begin{equation}\notag
+		k^2 - k + 720(ln(0.1)) \ge 0	
+	\end{equation}
+
+	Solving for $k$:
+
+	\begin{equation}\notag
+		k = \frac{1 \pm \sqrt{1-4\times(720\times ln(0.1))}}{2}	
+	\end{equation}
+
+	Giving the value: $k=41.2199...$\\
+	Since we cant have fractional values of $k$ we have it that $k=42$
+
+	\vspace{5pt}
+	So the number of people needed, $k$, such that the probability of at least 2 having the same birthday is $p\ge\frac{9}{10}$ is $k\ge42$
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+	
+	\subsection*{Part B)}
+	Since the PIN cannot start with $0$ we have it that there are $9\times 10^3$ possible 4 digit combinations. So $n=9\times10^3$.
+
+	And we want the probability of at least 2 people having the same PIN to be, $p\ge0.5$ (so $q\le 0.5$).
+
+	We now repeat the same steps in part A). So:
+
+	\begin{equation}\notag
+		q \le exp(\frac{-k^2+k}{18\times 10^3})	\le 0.5
+	\end{equation}
+	\begin{equation}\notag
+		ln(0.5) \ge \frac{-k^2+k}{18\times 10^3}
+	\end{equation}
+
+	Rearranging:
+
+	\begin{equation}\notag
+		k^2-k+ln(0.5) \times 18\times  10^3 \ge 0
+	\end{equation}
+
+	Solving for $k$:
+
+	\begin{equation}\notag
+		k = \frac{1 \pm \sqrt{1-4(ln(0.5)\times18\times10^3)}}{2}
+	\end{equation}
+
+	Giving the value: $k=112.2...$\\
+	So there must be $k\ge113$ people to have the probability of at least 2 sharing the same PIN be $p\ge0.5$
+
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+	\section*{Question 5}
+
+	First we define the cryptosystem:
+
+	\begin{tabular}{c c c}
+		$\mathcal{P}$	&	$=$	&	$\mathbb{Z}_{26}$ \\
+		$\mathcal{C}$	&	$=$	&	$\mathbb{Z}_{26}$\\
+		$\mathcal{K}$	&	$=$	&	$\mathbb{Z}_{26}$\\
+	\end{tabular}
+
+	\vspace{20pt}
+	\subsubsection*{Using the definition of perfect secrecy}
+	\begin{equation}\notag
+		p(w|c) = p(w), \quad w\in \mathcal{P}\ \textrm{and}\  c\in \mathcal{C}
+	\end{equation}
+	
+	Then by Bayes Theorem:
+
+	\begin{equation}\notag
+		p(w|c) = \frac{p(w) p(c|w)}{p(c)}
+	\end{equation}
+
+	Observe that:
+	\begin{enumerate}
+		\item Only one key in the Key space has a $p(k)>0$, which is $k=3$
+		\vspace{5pt}
+		\item We know that the 
+			\begin{equation}\notag
+				p(c) = \sum p(w)\times p(k_{w,c}) \quad \forall w\in \mathcal{P}, \ \textrm{and}\ k_{w,c} = \{k\in\mathcal{K} \ |\ E_k(w)\mapsto c\}
+			\end{equation}
+			Then since there is only one key, we have it that the probability of the ciphertext being $c$\\ 
+			is equal to the probability $p(w_c)$ where $E_k(w_c) = c$ 
+			\vspace{5pt}
+	\item $p(c|w)$ asks for the probability that the encryption of the plaintext $w$ results in $c$, so the probability that $E_k(w) \mapsto c$
+				. Given that there is only one key, we know that $w$ will either always be mapped to $c$ or never, so $p(c|w) = 1$ or $0$
+	\end{enumerate}
+
+	\vspace{10pt}
+	It follows then that:
+	
+	\begin{equation}\notag
+		p(w|c) = \frac{p(w_c) \times 1}{p(w_c)} \quad OR \quad \frac{p(w)\times 0}{p(w_c)}
+	\end{equation}
+		\begin{equation}\notag
+			p(w|c) =	1 \quad OR \quad 0
+	\end{equation}
+	
+	Thus we do not have perfect secrecy.
+
+	\vspace{20pt}
+	\subsubsection*{Using Shannon's Theorem}
+	Shannon's Theorem requires that $\mathcal{K}$ follows a uniform distribution. Notice however that in caesar cipher
+	only one key has a non-zero probability. So keys are not uniformly distributed, violating the requiement. Thus
+	the cryptosystem does not have perfect secrecy
+\end{document}

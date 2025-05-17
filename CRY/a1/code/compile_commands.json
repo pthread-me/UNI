@@ -1,0 +1,19 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++23",
+      "-Wall",
+      "-g",
+      "-I/home/cutie/hub/aoc/lib/include",
+      "/home/cutie/hub/aoc/lib/build/tokenizer.o",
+      "-o",
+      "build/main",
+      "main.cpp"
+    ],
+    "directory": "/home/cutie/hub/UNI/CRYP/a1/code",
+    "file": "/home/cutie/hub/UNI/CRYP/a1/code/main.cpp",
+    "output": "/home/cutie/hub/UNI/CRYP/a1/code/build/main"
+  }
+]

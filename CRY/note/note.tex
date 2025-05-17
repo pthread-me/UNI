@@ -1,0 +1,96 @@
+\documentclass{article}
+
+% Set the margins of the page.
+\usepackage[a4paper, total={6.5in, 9in}]{geometry}
+
+% A bunch of math packages.
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\usepackage{graphicx} 		% Insert images
+\usepackage{color}				% COLORS!
+\usepackage[shortlabels]{enumitem}			% More enumerate types such as \alph*
+\usepackage{listings}			% Used for code-blocks in latex.
+\usepackage{hyperref}
+
+% Create links when using ref and table of contents.
+\hypersetup{colorlinks=true, linkcolor=black}
+
+% Replace the indents for paragraphs with empty lines.
+\usepackage[parfill]{parskip}
+
+\usepackage[myheadings]{fancyhdr}
+\usepackage{titleref}
+\makeatletter
+\newcommand*{\currentname}{\TR@currentTitle}
+\makeatother
+
+% Number equations with reference to sub sections.
+\numberwithin{equation}{subsection}
+
+\definecolor{lightgray}{RGB}{200, 200, 200}
+
+% Set some style rules for code-blocks
+\lstset{
+	literate={<-}{$\leftarrow$}{2} {\\infty}{$\infty$}{1},
+	backgroundcolor=\color{lightgray}
+,
+	framexleftmargin=2pt,
+	framexrightmargin=2pt,
+	framextopmargin=2pt,
+	framexbottommargin=2pt,
+	frame=single,
+	basicstyle=\fontsize{10pt}{15pt}\selectfont,
+	stepnumber=1,
+	tabsize=4,
+}
+
+
+%increases table padding
+\def\arraystretch{1.5}
+
+
+
+\title{\textbf{CSCI-4116\\Emerg notes :(}}
+\author{Anas Alhadi\\B00895875}
+
+
+\begin{document}
+
+	\maketitle
+
+	\vspace{20pt}
+	
+	\hrulefill
+
+	\vspace{25pt}
+	\section*{Rec}
+	\underline{Recall:}
+
+	Let G be an abelian group, $g\in G$ written $<g> = \{g^k | 0 \le k \le e\}, e = ord_G g. finite$
+	\vspace{25pt}
+	\section*{Lagrangs Theorem}
+	\begin{enumerate}
+		\item Euler theorm: if gcd(a,m) = 1 then $a^{\varphi(m)} \equiv 1 (\textrm{mod}\ m)$
+		\item if m = p, so a prime, then $\varphi (m) = p-1$
+		\item So, for any base $a$, then $a^{p-1} \equiv 1 (\textrm{mod}\ m)$. WHich follows immediatly, and is fermat's little theorme
+	\end{enumerate}
+
+	\section*{Theorem 5.11}
+	Recall the group mod 13, in which we found subgroubs g=2,3,4 to be generators for cyclic groups. In that case
+	we found that the order of the group |<g>| divides the order of G. Mainly  order of G=12. and order $<2>$ was 12, 12|12. ord $<3>$ = 4, 4|12
+
+	Corollary of this is that $g^{|G|} =1 $, Proof: notice tehorems 5.5 and 5.11\\
+	in this case $a^{\varphi(m) =1}$ is nothing but a special case if the above. in which 
+	% Replace the B00 with \currentname to replace it with the section name for 
+	% questions that take up more than 2 pages
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+ a
+
+\end{document}

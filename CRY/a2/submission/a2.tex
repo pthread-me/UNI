@@ -92,7 +92,12 @@
 	$y+m\mathbb{Z}$ is the inverse of $x+m\mathbb{Z}$ and vise versa. Since $(\mathbb{Z}/m\mathbb{Z}, \cdot)$ is a commutative monoid
 	we know that $a\cdot a^{-1} = a^{-1}\cdot a$.
 
-	\vspace{15pt}
+	\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+
 	\subsection*{Part b)}
 	\subsubsection*{Group of Units}
 	The group of units is the group of all invertible residue classes, and thus, is the 
@@ -126,7 +131,7 @@
 		\item $12+15\mathbb{Z}$	
 	\end{itemize}
 
-	\vspace{25pt}
+	\newpage
 	\section*{Question 2}
 	b) is cryptosystem while a) is not.
 
@@ -142,7 +147,6 @@
 	Therefore there is no gaurentee that $\mathcal{D}_{k^{-1}} (\mathcal{E}_k(p)) = p$, thus the properity is not satisfied. (The restriction in scheme b gaurentees
 	that all keys are invertible).
 
-	\vspace{10pt}
 	\textbf{Cryptosystem's details: (scheme b)}
 	\begin{itemize}
 		\item Plaintext Space: $\mathbb{Z}_{26}$
@@ -151,28 +155,26 @@
 			mapping.}
 	\end{itemize}	
 
-	\newpage
 
 	% Replace the B00 with \currentname to replace it with the section name for 
 	% questions that take up more than 2 pages
-	\newpage
 	\fancyhead[L]{\text{B00895875}}
 	\fancyhead[R]{\text{Anas Alhadi}}
 	\thispagestyle{fancy}
 
+	\vspace{25pt}
 	\section*{Question 3 }	
 	\begin{enumerate}
 		\item $\varphi(2024) = 880$
 		\item $\varphi(2025) = 1080$
 		\item $\varphi(8958) = 2984$
 	\end{enumerate}
-	\footnote*{I wrote a C++ program to calculate Question 3 this for me}
+	\footnote{I wrote a C++ program to calculate Question 3 for me}
 
-	\vspace{30pt}
+	\newpage
 	\section*{Question 4}
 	
-	\underline{\textbf{Plain and Cipher Spaces:}}
-
+	\subsection*{Plain and Cipher Spaces:}
 	The plain and cipher text can be any string over $\Sigma$. Thus the Plain text and Cipher text space
 	is the set of all possible strings over the alphabet, denoted as $\Sigma ^*$
 
@@ -184,8 +186,7 @@
 	
 
 	\vspace{20pt}
-	\underline{\textbf{Encryption and Decryption Functions}}
-	
+	\subsection*{Encryption and Decryption Functions}	
 	The described encryption and decryption procedures can each be represented as the composition of 
 	2 functions: 
 	\begin{itemize}
@@ -220,9 +221,12 @@
 			\mathcal{D} = R \circ \mathcal{D}_{k_1, k_2}'				
 		\end{equation}
 	
-	\newpage
-	\underline{\textbf{Key Space:}}
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
 
+
+	\subsection*{Key Space:}
 
 	Observe that the symbols and the operations $\mathcal{E}'$ and $\mathcal{D}'$ that we 
 	perform on them is just the group $(\mathbb{Z}/m\mathbb{Z}, +)$ with $m=26$. So the inverse of
@@ -230,8 +234,7 @@
 	valid key. Thus the keyspace is $\mathbb{Z}_{26}$.
 
 	\vspace{20pt}
-	\underline{\textbf{Conclusion:}}
-
+	\subsection*{Conclusion:}
 	Since the procedure has:
 	\begin{enumerate}
 		\item a Plain text space
@@ -270,5 +273,9 @@
 			
 	\end{itemize}
 	
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
 
 \end{document}

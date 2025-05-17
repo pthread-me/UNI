@@ -1,14 +1,150 @@
-@book{latex-by-lamport,
-author =      "Leslie Lamport",
-title =       "A Document Preparation System {Latex} User's Guide and Reference Manual",
-publisher =   "Addison-Wesley",
-year =        1986
+@misc{rfc8724,
+    series =    {Request for Comments},
+    number =    8724,
+    howpublished =  {RFC 8724},
+    publisher = {RFC Editor},
+    doi =       {10.17487/RFC8724},
+    url =       {https://www.rfc-editor.org/info/rfc8724},
+    author =    {Ana Minaburo and Laurent Toutain and Carles Gomez and Dominique Barthel and Juan-Carlos Zúñiga},
+    title =     {{SCHC: Generic Framework for Static Context Header Compression and Fragmentation}},
+    pagetotal = 71,
+    year =      2020,
+    month =     apr,
+    abstract =  {This document defines the Static Context Header Compression and fragmentation (SCHC) framework, which provides both a header compression mechanism and an optional fragmentation mechanism. SCHC has been designed with Low-Power Wide Area Networks (LPWANs) in mind. SCHC compression is based on a common static context stored both in the LPWAN device and in the network infrastructure side. This document defines a generic header compression mechanism and its application to compress IPv6/UDP headers. This document also specifies an optional fragmentation and reassembly mechanism. It can be used to support the IPv6 MTU requirement over the LPWAN technologies. Fragmentation is needed for IPv6 datagrams that, after SCHC compression or when such compression was not possible, still exceed the Layer 2 maximum payload size. The SCHC header compression and fragmentation mechanisms are independent of the specific LPWAN technology over which they are used. This document defines generic functionalities and offers flexibility with regard to parameter settings and mechanism choices. This document standardizes the exchange over the LPWAN between two SCHC entities. Settings and choices specific to a technology or a product are expected to be grouped into profiles, which are specified in other documents. Data models for the context and profiles are out of scope.},
 }
 
-@book{latex-companion,
- author =      "Michel Goossens and Frank Mittelbach and Alexander Samarin",
- title =       "The {LaTeX} Companion",
- publisher =   "Addison-Wesley",
- year =        1994
+@misc{rfc8376,
+    series =    {Request for Comments},
+    number =    8376,
+    howpublished =  {RFC 8376},
+    publisher = {RFC Editor},
+    doi =       {10.17487/RFC8376},
+    url =       {https://www.rfc-editor.org/info/rfc8376},
+    author =    {Stephen Farrell},
+    title =     {{Low-Power Wide Area Network (LPWAN) Overview}},
+    pagetotal = 43,
+    year =      2018,
+    month =     may,
+    abstract =  {Low-Power Wide Area Networks (LPWANs) are wireless technologies with characteristics such as large coverage areas, low bandwidth, possibly very small packet and application-layer data sizes, and long battery life operation. This memo is an informational overview of the set of LPWAN technologies being considered in the IETF and of the gaps that exist between the needs of those technologies and the goal of running IP in LPWANs.},
 }
+
+@misc{rfc9011,
+    series =    {Request for Comments},
+    number =    9011,
+    howpublished =  {RFC 9011},
+    publisher = {RFC Editor},
+    doi =       {10.17487/RFC9011},
+    url =       {https://www.rfc-editor.org/info/rfc9011},
+    author =    {Olivier Gimenez and Ivaylo Petrov},
+    title =     {{Static Context Header Compression and Fragmentation (SCHC) over LoRaWAN}},
+    pagetotal = 26,
+    year =      2021,
+    month =     apr,
+    abstract =  {The Static Context Header Compression and fragmentation (SCHC) specification (RFC 8724) describes generic header compression and fragmentation techniques for Low-Power Wide Area Network (LPWAN) technologies. SCHC is a generic mechanism designed for great flexibility so that it can be adapted for any of the LPWAN technologies. This document defines a profile of SCHC (RFC 8724) for use in LoRaWAN networks and provides elements such as efficient parameterization and modes of operation.},
+}
+
+@misc{lora_regional_params_2016,
+  author       = {{LoRa Alliance Technical commitee}},
+  title        = {{LoRaWAN Regional Parameters}},
+	howpublished	=	{LoRaWAN1.0.2 Specification},
+  url = {https://lora-alliance.org/wp-content/uploads/2020/11/lorawan_regional_parameters_v1_0-20161012_1397_1.pdf},
+  note         = {Version 1.0},
+  year         = 	2016,
+  month        = jul,
+  organization = {LoRa Alliance}
+}
+
+
+@article{GomezMontenegro2020IPv6,
+  author    = {C. Gómez Montenegro and A. Minaburo and L. Toutain and D. Barthel and J. C. Zúñiga},
+  title     = {IPv6 over LPWANs: connecting Low Power Wide Area Networks to the Internet (of Things)},
+  journal   = {IEEE Wireless Communications},
+  volume    = {27},
+  number    = {1},
+  pages     = {206--213},
+  month     = feb,
+  year      = 2020,
+  url       = {https://upcommons.upc.edu/bitstream/handle/2117/185281/LPWAN%20Wireless%20Commag%20paper_submitted_IEEE_note.pdf;jsessionid=76B16048CF19B90DDB5FBF84570E5665?sequence=1}
+}
+
+
+@article{Tomoskozi2022Packet,
+  author    = {Máté Tömösközi and Martin Reisslein and Frank H. P. Fitzek},
+  title     = {Packet Header Compression: A Principle-Based Survey of Standards and Recent Research Studies},
+  journal   = {IEEE Communications Surveys \& Tutorials},
+  volume    = {24},
+  number    = {1},
+  pages     = {698--740},
+  year      = {2022},
+  month     = {First Quarter},
+  doi       = {10.1109/COMST.2021.3116305}
+}
+
+
+@Article{Ghaleb2016,
+author={Ghaleb, Safwan M.
+and Subramaniam, Shamala
+and Zukarnain, Zuriati Ahmed
+and Muhammed, Abdullah},
+title={Mobility management for IoT: a survey},
+journal={EURASIP Journal on Wireless Communications and Networking},
+year={2016},
+month={Jul},
+day={11},
+volume={2016},
+number={1},
+pages={165},
+abstract={Internet of Thing (IoT) or also referred to as IP-enabled wireless sensor network (IP-WSN) has become a rich area of research. This is due to the rapid growth in a wide spectrum of critical application domains. However, the properties within these systems such as memory size, processing capacity, and power supply have led to imposing constraints on IP-WSN applications and its deployment in the real world. Consequently, IP-WSN is constantly faced with issues as the complexity further rises due to IP mobility. IP mobility management is utilized as a mechanism to resolve these issues. The management protocols introduced to support mobility has evolved from host-based to network-based mobility management protocols. The presence of both types of solutions is dominant but depended on the nature of systems being deployed. The mobile node (MN) is involved with the mobility-related signaling in host-based protocols, while network-based protocols shield the host by transferring the mobility-related signaling to the network entities. The features of the IoT are inclined towards the network-based solutions. The wide spectrum of strategies derived to achieve enhanced performance evidently displays superiority in performance and simultaneous issues such as long handover latency, intense signaling, and packet loss which affects the QoS for the real-time applications. This paper extensively reviews and discusses the algorithms developed to address the challenges and the techniques of integrating IP over WSNs, the attributes of mobility management within the IPv4 and IPv6, respectively, and special focus is given on a comprehensive review encompassing mechanisms, advantages, and disadvantages on related work within the IPv6 mobility management. The paper is concluded with the proposition of several pertinent open issues which are of high research value.},
+issn={1687-1499},
+doi={10.1186/s13638-016-0659-4},
+url={https://doi.org/10.1186/s13638-016-0659-4}
+}
+
+@INPROCEEDINGS{8355231,
+  author={Sanchez-Iborra, Ramon and Sánchez-Gómez, Jesus and Santa, José and Fernández, Pedro J. and Skarmeta, Antonio F.},
+  booktitle={2018 IEEE 4th World Forum on Internet of Things (WF-IoT)}, 
+  title={IPv6 communications over LoRa for future IoV services}, 
+  year={2018},
+  volume={},
+  number={},
+  pages={92-97},
+  keywords={IPv6;LoRa;LP-WAN;edge computing},
+  doi={10.1109/WF-IoT.2018.8355231}}
+
+@misc{openSCHCdoc,
+  author       = {Acklio},
+  title        = {openSCHC Documentation},
+  howpublished = {\url{https://openshc.org/doc/}},
+  note         = {Accessed: April 8, 2025},
+  year         = {2025}
+}
+
+
+@inproceedings{alhajhassan:hal-04244739,
+  TITLE = {{SCHC over LoRaWAN, a Framework for Interoperable, Energy Efficient and Scalable Networks}},
+  AUTHOR = {Al Haj Hassan, Hussein and Krayem, Ali and Martinez Bolivar, Ivan Marino and Toutain, Laurent and Pelov, Alexander},
+  URL = {https://hal.science/hal-04244739},
+  BOOKTITLE = {{WF-IoT 2023: IEEE 9th World Forum on Internet of Things}},
+  ADDRESS = {Aveiro, Portugal},
+  ORGANIZATION = {{IEEE}},
+  YEAR = {2023},
+  MONTH = Oct,
+  DOI = {10.1109/WF-IoT58464.2023.10539394},
+  KEYWORDS = {LPWAN ; LoRaWAN ; Internet ; SCHC ; Energy efficiency},
+  PDF = {https://hal.science/hal-04244739v1/file/SCHC_Imapct__Interoperability__energy_efficiency_and_capacity.pdf},
+  HAL_ID = {hal-04244739},
+  HAL_VERSION = {v1},
+}
+
+
+@INPROCEEDINGS{dts,
+  author={Munoz-Lara, Rodrigo and Céspedes, Sandra and Diaz, Marcos},
+  booktitle={2024 IEEE 10th World Forum on Internet of Things (WF-IoT)}, 
+  title={SCHC over DtS-IoT: Performance of SCHC Confirmation Modes in Satellite IoT}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={678-683},
+  keywords={Satellites;Protocols;Low earth orbit satellites;Delays;Internet of Things;Compounds;Reliability;IP networks;Standards;Low-power wide area networks;DtS-IoT;fragmentation;IoT;IPv6;satellite;SCHC},
+  doi={10.1109/WF-IoT62078.2024.10811196}}
 

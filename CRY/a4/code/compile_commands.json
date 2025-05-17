@@ -1,0 +1,29 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++23",
+      "-Wall",
+      "-Werror",
+      "-Wpedantic",
+      "-Wextra",
+      "-Wformat",
+      "-Wnrvo",
+      "-Wnull-dereference",
+      "-Winline",
+      "-Wconversion",
+      "-Wdangling-else",
+      "-pedantic-errors",
+      "-I//home/cutie/hub/library/lib/include",
+      "-g",
+      "/home/cutie/hub/library/lib/build/tokenizer.o",
+      "-o",
+      "build/main",
+      "main.cpp"
+    ],
+    "directory": "/home/cutie/hub/UNI/CRY/a4/code",
+    "file": "/home/cutie/hub/UNI/CRY/a4/code/main.cpp",
+    "output": "/home/cutie/hub/UNI/CRY/a4/code/build/main"
+  }
+]

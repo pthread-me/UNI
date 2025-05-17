@@ -1,0 +1,405 @@
+\documentclass{article}
+
+% Set the margins of the page.
+\usepackage[a4paper, total={6.5in, 9in}]{geometry}
+
+% A bunch of math packages.
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\usepackage{graphicx} 		% Insert images
+\usepackage{changepage}
+\usepackage{color}				% COLORS!
+\usepackage[shortlabels]{enumitem}			% More enumerate types such as \alph*
+\usepackage{listings}			% Used for code-blocks in latex.
+\usepackage{hyperref}
+
+% Create links when using ref and table of contents.
+\hypersetup{colorlinks=true, linkcolor=black}
+
+% Replace the indents for paragraphs with empty lines.
+\usepackage[parfill]{parskip}
+
+\usepackage[myheadings]{fancyhdr}
+\usepackage{titleref}
+\makeatletter
+\newcommand*{\currentname}{\TR@currentTitle}
+\makeatother
+
+% Number equations with reference to sub sections.
+\numberwithin{equation}{subsection}
+
+\definecolor{lightgray}{RGB}{220, 220, 220}
+
+%frame=single,
+%basicstyle=\fontsize{10pt}{15pt}\selectfont,
+%stepnumber=1,
+%backgroundcolor=\color{backcolour},   
+%commentstyle=\color{codegreen},
+%keywordstyle=\color{magenta},
+%numberstyle=\tiny\color{codegray},
+%stringstyle=\color{codepurple},
+\lstdefinestyle{mystyle}{
+	basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+		literate={<-}{$\leftarrow$}{2} {\\infty}{$\infty$}{1} {\\equiv}{$\equiv$}{1}
+		{\\IntegerModm}{$(\mathbb{Z}/m\mathbb{Z})$}{7} {\\in}{$\in$}{1} {\\varphim}{$\varphi(m)$}{5}
+		{\\integers}{$\mathcal{Z}$}{1} {\\IntegerModn}{$(\mathbb{Z}/n\mathbb{Z})$}{7},
+		backgroundcolor=\color{lightgray},
+		frame=single,
+		framesep=0pt,
+		xleftmargin=20pt,
+		framexleftmargin=0pt,
+		framexrightmargin=-30pt,
+		framextopmargin=2pt,
+		framexbottommargin=2pt
+}
+
+% Set some style rules for code-blocks
+\lstset{style=mystyle}
+
+
+%increases table padding
+\def\arraystretch{1.5}
+
+
+
+\title{\textbf{CSCI-4116\\Assignment 9}}
+\author{Anas Alhadi\\B00895875}
+
+
+\begin{document}
+
+	\maketitle
+
+	\vspace{20pt}
+	\par{Note: all code was written to run on Sage Cell Server (sagecell.sagemath.org), with the language option set to Sage}
+
+	\hrulefill
+
+	\vspace{25pt}
+	\section*{Question 1}
+	\subsection*{Part A}
+
+\vspace{10pt}
+\textbf{Code:}
+
+\begin{lstlisting}
+	R = IntegerModRing(3511)
+	_,x,y = xgcd(65537,3511)
+
+	print("(x,y) =", (x,y))
+\end{lstlisting}
+
+\textbf{Output:}
+\begin{lstlisting}
+	(x,y) = (-1405, 26226)
+\end{lstlisting}
+
+
+\vspace{25pt}
+\subsection*{Part B}
+
+\vspace{10pt}
+\textbf{Code:}
+\begin{lstlisting}
+	p, m = 1234567, 100000		# defining the modulo to acquire the last 5 digits
+	R = IntegerModRing(m)			#	\IntegerModm	
+	a = R(3)									#	3 \in \IntegerModm
+
+	n = euler_phi(m)					# \varphim
+	N = IntegerModRing(n)			#	(\integers/\varphim\integers)
+	p_mod_n = N(p)						#	calculating the congruence: p_mod_n \equiv p (mod\varphim)
+
+	a^p_mod_n									# 3^\varphim (mod m)
+\end{lstlisting}
+
+\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+
+
+
+\textbf{Output:}
+
+\begin{lstlisting}
+	40587	
+\end{lstlisting}
+
+
+\vspace{25pt}
+
+\subsection*{Part C}
+
+\vspace{10pt}
+\textbf{Code:}
+
+\begin{lstlisting}
+	a, r, m = 314, 271, 11111				#	For the form a*x \equiv r (mod m)
+	R = IntegerModRing(m)
+
+	if gcd(a,m) == 1:
+		a_inv = inverse_mod(a, m)
+		x = r*a_inv										#	We multiply both sides by the inverse
+		x = R(x)											# reducing x to modulo m
+		print(x)
+	else:
+		print("No unique solution")
+\end{lstlisting}
+
+\textbf{Output:}
+\begin{lstlisting}
+	10298
+\end{lstlisting}
+
+
+\vspace{25pt}
+\subsection*{Part D}
+We first check if a solution exists. Given the form:
+\begin{equation}\notag
+	ax + by = d	
+\end{equation}
+
+A solution exists if and only if $gcd(a,b) | d$. By corollary 5.1 (in the notes)
+
+In our case the equation is:
+\begin{equation}\notag
+	216x + 606y = 66	
+\end{equation}
+And 
+\begin{equation}\notag
+	gcd(216, 606) = 6, \qquad 6|66	
+\end{equation}
+
+
+We now reduce the equation by the gcd (divide it), So:
+\begin{equation}\notag
+	36x + 101y = 11	
+\end{equation}
+
+Such that the $gcd(a,b) = 1$ and we can use the Extended Euclidean Algorithm to find the multiplicative inverse of 
+36 in modulo 101. I do this using the bellow code in Sage:
+
+\textbf{Code:}
+\begin{lstlisting}
+	inverse_mod(36, 101)
+\end{lstlisting}
+\textbf{Output}
+\begin{lstlisting}
+	87
+\end{lstlisting}
+
+\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+
+So $x=87$ is a solution for $36x+101y=1$ But we want to solve for $11$. Thus we multiply both sides by $11$ (I disregard
+the value of y since it disappears when we apply mod 101):
+\begin{equation}\notag
+	x = 87*11 \equiv 48 (\textrm{mod}\ 101)	
+\end{equation}
+So:
+\begin{equation}\notag
+	36(48) + 101y = 11	
+\end{equation}
+
+And we have it that $x=48$ is a solution to the congruence $216x \equiv 66(\textrm{mod} \ 606)$
+
+
+We acuired this solution by restricting the modulo to 101 from 606 (which makes it so that the congruence is solvable).
+To extend the modulo back to 606 and find the remaining possible values of x we add multiples of 101 to x.
+\begin{equation}\notag
+	x = \{48+101n, \quad n = \{0,1,2,3,4,5\}\}	
+\end{equation}
+
+So the solution is:
+\begin{equation}\notag
+	x = \{48, 149, 250, 351, 452, 553 \}	
+\end{equation}
+
+\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+
+\section*{Question 2}
+
+\subsection*{Part A}
+Given: \ $n=899$ \ $e=11$ \ $c=468$. We compute $\varphi(n) = 840$
+
+We first check the $gcd(e, \varphi(n)) = gcd(11, 840) = 1$ So the key is valid.
+To find the decryption key $d$ we need to find the mutiplicative inverse of $e$ in $\mathbb{Z}/\varphi(n)\mathbb{Z}$. 
+
+
+Using the Extended Euclidean Algorithm, we get that $d = 611$ 
+
+It follows then that the plaintext $m$ is:
+
+\begin{equation}\notag
+	m = c^d (\textrm{mod} \ n)		
+\end{equation}
+\begin{equation}\notag
+	m = 468^{611} (\textrm{mod}\ 899)
+\end{equation}
+
+\begin{equation}\notag
+	m = 13	
+\end{equation}
+
+The decryption function in Sage is:
+
+\textbf{Code:}
+\begin{lstlisting}
+	def decrypt(n,e,c):
+		R = IntegerModRing(n)
+		c = R(c)									# redefing the cipher text so that: c \in \IntegerModn 
+		
+		phi_n = euler_phi(n)
+		d = inverse_mod(e, phi_n)
+
+		m = c^d
+		m = R(m)									#	Same as for c, this is equivalent to: m (mod n)
+		
+		return m
+\end{lstlisting}
+
+Calling the function:
+\begin{lstlisting}
+	decrypt(899,11,468)
+\end{lstlisting}  
+returns the same value as before. $m=13$
+\vspace{25pt}
+
+\subsection*{Part B}
+We repeat the exact same steps, this time calling:\footnote{In both parts a and b, we easily check by raising $m^e (\textrm{mod} \ n)$
+which returned $c$ so the function works correctly for the given inputs}
+\begin{lstlisting}
+	decrypt(11413,7467,5859)
+\end{lstlisting}
+We get $m=1415$
+
+
+\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+\section*{Question 3}
+Given: \ $n=642401$ \ , \ $516107^2 \equiv (\textrm{mod}\ n)$ \ and \ $187722^2 \equiv 2^2 \times 7 (\textrm{mod}\ n)$
+
+\vspace{10pt}
+We make use of the \textbf{Basic Princliple} mentioned in appendix A:
+\begin{adjustwidth}{2em}{2em}	
+If $x^2 \equiv y^2 (\textrm{mod}\ n)$ and $x \not \equiv \pm y (\textrm{mod}\ n)$. Then $gcd(x-y, n) | n$ and is non-trivial (niether $1$ nor $n$) 
+\end{adjustwidth}
+
+\vspace{10pt}
+Observe that:
+\begin{equation}\notag
+	(516107)^2 \times (187722)^2 \equiv 2^2 \times 7^2 (\textrm{mod} \ 642401)	
+\end{equation}
+
+Since the Ring $(\mathbb{Z}/m\mathbb{Z}, + , \cdot)$ is commutative, we can write it as:
+\begin{equation}\notag
+	(516107 \times 187722)^2 \equiv (14)^2 (\textrm{mod}\ 642401)	
+\end{equation}
+\begin{equation}\notag
+	(96884638254)^2 \equiv (14)^2 (\textrm{mod}\ 642401)	
+\end{equation}
+
+
+We can confirm using Sage that:
+
+\begin{tabular}{c c c c c c c}
+	$95884638254$	&	$\equiv$	&	$289038$	&	$\not \equiv$	&	$14$	&\\
+								&						&						&	$\not \equiv$	&	$-14$	& $\equiv$ $642387$
+\end{tabular}
+
+
+So the $gcd(x-y, n)$ is a non-trivial factor:
+
+\begin{equation}\notag
+	gcd(96884638254-14, 642401) = 1129	
+\end{equation}
+
+And $n$ can be factored as:
+\begin{equation}\notag
+	n = 642401 = 1129 \times 569	
+\end{equation}
+
+\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+
+	\section*{Question 4}
+
+	Given: \ $n=537069139875071$ \ $x=85975324443166$ \ $y=462436106261$
+
+	We first check that $x \not \equiv \pm y (\textrm{mod}\ n)$. Which is trivial since 
+	both x and y $<$ n. Then since $x\not = y$ and $x\not = -y+n$, we know that the condition holds.
+
+	Now we can use the ``gcd" function in Sage math to find the factors. By $gcd(x-y, n)$
+	We get the factor 9876469. so:
+
+\begin{equation}\notag
+	n = 537069139875071 = 9876469 \times 54378659	
+\end{equation}
+
+\newpage
+	\fancyhead[L]{\text{B00895875}}
+	\fancyhead[R]{\text{Anas Alhadi}}
+	\thispagestyle{fancy}
+
+
+\section*{Question 5}
+We first implement the Fermat Factorization method which gives us both $q$ and $p$. Then
+use them to obtain $\varphi(n)$ to find the inverse.
+
+\textbf{Code:}
+\begin{lstlisting}
+	n = 152415787501905985701881832150835089037858868621211004433
+	R = IntegerModRing(n)
+
+	e = 9007
+	c = R(141077461765569500241199505617854673388398574333341423525)
+
+
+	def factor(n):
+		for i in range(1, 1000000):
+			cur = n + pow(i, 2)
+			if cur.is_square():
+				return (cur.sqrt() + i, cur.sqrt() - i)
+
+
+	p,q = factor(n)
+	phi_n = (p-1)*(q-1)
+	d = inverse_mod(e, phi_n)
+
+	m = c^d
+	print(m)
+\end{lstlisting}
+
+\textbf{Output:}
+\begin{lstlisting}
+	2008091900142113020518002301190014152000190503211805
+\end{lstlisting}
+\end{document}

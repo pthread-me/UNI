@@ -1,0 +1,68 @@
+\documentclass{article}
+
+% Set the margins of the page.
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+% A bunch of math packages.
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+
+% Insert images
+\usepackage{graphicx}
+
+% COLORS!
+\usepackage{color}
+
+% More enumerate types such as \alph*
+\usepackage{enumitem}
+
+% Used for code-blocks in latex.
+\usepackage{listings}
+
+% Create links when using ref and table of contents.
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=black}
+
+% Replace the indents for paragraphs with empty lines.
+\usepackage[parfill]{parskip}
+
+% Number equations with reference to sub sections.
+\numberwithin{equation}{subsection}
+
+\definecolor{lightgray}{RGB}{200, 200, 200}
+
+% Set some style rules for code-blocks
+\lstset{
+	literate={<-}{$\leftarrow$}{2} {\\infty}{$\infty$}{1},
+	backgroundcolor=\color{lightgray}
+,
+	framexleftmargin=2pt,
+	framexrightmargin=2pt,
+	framextopmargin=2pt,
+	framexbottommargin=2pt,
+	frame=single,
+	basicstyle=\fontsize{10pt}{15pt}\selectfont,
+	stepnumber=1,
+	tabsize=4,
+}
+
+
+%increases table padding
+\def\arraystretch{1.5}
+
+\title{\textbf{CSCI-2201\\Lec 1}}
+\author{Anas Alhadi\\B00895875}
+
+\begin{document}
+
+	\maketitle
+	\tableofcontents
+
+	\newpage 
+	\section{How late will the prof be?}
+	\par{
+		Great first impression btw.
+	}
+\end{document}

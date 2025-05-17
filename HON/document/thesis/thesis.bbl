@@ -1,8 +1,54 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
-\bibitem{latex-by-lamport}
-Leslie Lamport.
-\newblock {\em A Document Preparation System {Latex} User's Guide and Reference Manual}.
-\newblock Addison-Wesley, 1986.
+\bibitem{alhajhassan:hal-04244739}
+Hussein Al~Haj~Hassan, Ali Krayem, Ivan~Marino Martinez~Bolivar, Laurent Toutain, and Alexander Pelov.
+\newblock {SCHC over LoRaWAN, a Framework for Interoperable, Energy Efficient and Scalable Networks}.
+\newblock In {\em {WF-IoT 2023: IEEE 9th World Forum on Internet of Things}}, Aveiro, Portugal, October 2023. {IEEE}.
+
+\bibitem{rfc8376}
+Stephen Farrell.
+\newblock {Low-Power Wide Area Network (LPWAN) Overview}.
+\newblock RFC 8376, May 2018.
+
+\bibitem{Ghaleb2016}
+Safwan~M. Ghaleb, Shamala Subramaniam, Zuriati~Ahmed Zukarnain, and Abdullah Muhammed.
+\newblock Mobility management for iot: a survey.
+\newblock {\em EURASIP Journal on Wireless Communications and Networking}, 2016(1):165, Jul 2016.
+
+\bibitem{rfc9011}
+Olivier Gimenez and Ivaylo Petrov.
+\newblock {Static Context Header Compression and Fragmentation (SCHC) over LoRaWAN}.
+\newblock RFC 9011, April 2021.
+
+\bibitem{lora_regional_params_2016}
+{LoRa Alliance Technical commitee}.
+\newblock {LoRaWAN Regional Parameters}.
+\newblock LoRaWAN1.0.2 Specification, July 2016.
+\newblock Version 1.0.
+
+\bibitem{rfc8724}
+Ana Minaburo, Laurent Toutain, Carles Gomez, Dominique Barthel, and Juan-Carlos Zúñiga.
+\newblock {SCHC: Generic Framework for Static Context Header Compression and Fragmentation}.
+\newblock RFC 8724, April 2020.
+
+\bibitem{GomezMontenegro2020IPv6}
+C.~Gómez Montenegro, A.~Minaburo, L.~Toutain, D.~Barthel, and J.~C. Zúñiga.
+\newblock Ipv6 over lpwans: connecting low power wide area networks to the internet (of things).
+\newblock {\em IEEE Wireless Communications}, 27(1):206--213, February 2020.
+
+\bibitem{dts}
+Rodrigo Munoz-Lara, Sandra Céspedes, and Marcos Diaz.
+\newblock Schc over dts-iot: Performance of schc confirmation modes in satellite iot.
+\newblock In {\em 2024 IEEE 10th World Forum on Internet of Things (WF-IoT)}, pages 678--683, 2024.
+
+\bibitem{8355231}
+Ramon Sanchez-Iborra, Jesus Sánchez-Gómez, José Santa, Pedro~J. Fernández, and Antonio~F. Skarmeta.
+\newblock Ipv6 communications over lora for future iov services.
+\newblock In {\em 2018 IEEE 4th World Forum on Internet of Things (WF-IoT)}, pages 92--97, 2018.
+
+\bibitem{Tomoskozi2022Packet}
+Máté Tömösközi, Martin Reisslein, and Frank H.~P. Fitzek.
+\newblock Packet header compression: A principle-based survey of standards and recent research studies.
+\newblock {\em IEEE Communications Surveys \& Tutorials}, 24(1):698--740, First Quarter 2022.
 
 \end{thebibliography}

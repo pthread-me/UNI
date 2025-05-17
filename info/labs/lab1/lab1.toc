@@ -1,0 +1,6 @@
+\contentsline {section}{\numberline {1}Exercise 1.A}{2}{section.1}%
+\contentsline {section}{\numberline {2}Exercise 1.B}{5}{section.2}%
+\contentsline {section}{\numberline {3}Exercise 2.A}{6}{section.3}%
+\contentsline {section}{\numberline {4}Exercise 2.B}{8}{section.4}%
+\contentsline {section}{\numberline {5}Exercise 3.A}{9}{section.5}%
+\contentsline {section}{\numberline {6}Exercise 3.B}{11}{section.6}%

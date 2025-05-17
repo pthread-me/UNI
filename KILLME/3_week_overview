@@ -1,0 +1,165 @@
+\documentclass{article}
+
+% Set the margins of the page.
+\usepackage[a4paper, total={6.5in, 9in}]{geometry}
+
+% A bunch of math packages.
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+\usepackage{changepage}
+\usepackage{graphicx} 		% Insert images
+\usepackage{color}				% COLORS!
+\usepackage[shortlabels]{enumitem}			% More enumerate types such as \alph*
+\usepackage{listings}			% Used for code-blocks in latex.
+\usepackage{hyperref}
+
+% Create links when using ref and table of contents.
+\hypersetup{colorlinks=true, linkcolor=black}
+
+% Replace the indents for paragraphs with empty lines.
+\usepackage[parfill]{parskip}
+
+\usepackage[myheadings]{fancyhdr}
+\usepackage{titleref}
+\makeatletter
+\newcommand*{\currentname}{\TR@currentTitle}
+\makeatother
+
+% Number equations with reference to sub sections.
+\numberwithin{equation}{subsection}
+
+\definecolor{lightgray}{RGB}{200, 200, 200}
+
+% Set some style rules for code-blocks
+\lstset{
+	literate={<-}{$\leftarrow$}{2} {\\infty}{$\infty$}{1},
+	backgroundcolor=\color{lightgray}
+,
+	framexleftmargin=2pt,
+	framexrightmargin=2pt,
+	framextopmargin=2pt,
+	framexbottommargin=2pt,
+	frame=single,
+	basicstyle=\fontsize{10pt}{15pt}\selectfont,
+	stepnumber=1,
+	tabsize=4,
+}
+
+
+%increases table padding
+\def\arraystretch{1.5}
+
+
+
+\title{\textbf{CSCI 8873 -  Overview}}
+
+\author{Anas Alhadi\\B00895875}
+
+
+\begin{document}
+
+	\maketitle
+
+	\section{Main Goal}
+	\par{
+		To asses different modes of dynamic rule updating on the SCHC compression scheme. 
+		And their impact on device and bandwidth usage.
+	}
+
+
+	\section{Network Structure}
+	\par{
+		We assume a single connection between a SCHC device and a router/core device. All 
+		update decisions and calculations are made at the core and communicated back to the device.
+	}
+
+	\vspace{20pt}
+	\section{Modes}
+	\subsection{Static Rules}
+	\subsubsection{Description}
+	\par{
+		Rules are kept as generic as possible, with fields either being known by both device and core
+		or explicitly sent (the only compression actions used are sent/not-sent)
+	}
+
+	\subsubsection{Details}
+	\par{
+		The core maintains a priority queue for some fields in it's existing set of rules.
+		When sending/recieving a packet we keep note of the number of times a field takes a specific
+		value. Once the counter crosses a specified cutoff value, we add a new rule with that value
+		set.\\
+		We need to consider rule merging, and different cutoff values before adding new rules. 
+		This raises an important issue of having too many rules, in which we will need to include a 
+		lifetime for rules.
+	}
+
+	\newpage
+	\subsection{Map Updating}
+	\subsubsection{Description}
+	\par{
+		No new rules are added, instead, variable fields always use the ``Matching" compression
+		action, in which we maintain a map of possible values and only transmit the index of the target value.
+	}
+
+	\subsubsection{Details}
+	\par{
+		A simple way of maintaing the ``map" is by having it be a 2 level fixed size priority queue.
+		Target values are ordered in the queue based on the number of times they are encountered. Values
+		in the top queue are added to the map, while values in the second level queue remain monitored but not compressed.
+		Every time an element is swapped in the top level queue it triggers a rule update (which is communicated to the device).\\
+		The top level queue's size is fixed as it dictates the number of bits needed to represent the index of the element in the
+		map. We test the mode's performance of different map sizes.
+	}
+
+	\vspace{20pt}
+	\subsection{Field updating}
+	\subsubsection{Description}
+	\par{
+		For field in which the set of target values follow a certain pattern or slightly
+		differes (think of the options field in coap in which we access resources in the same path "dir/file\_1") in this case
+		(depending on the encoding) we can avoid the transmission of a set of the most significant bits, and instead only
+		transmit the parts the vary.
+	}
+
+	\subsubsection{Details}
+	\par{
+		Similar to the previous mode, we keep a 2 level, fixed size, priority queues holding the most
+		used target values. We then find the LCP of the values (so their most significant bits) and only transmit the 
+		LSB. (I need to verify that this is possible the openSCHC as i'm not sure if we have bit control on compression)
+	}
+
+
+	\newpage
+	\section{Short Term Steps:}
+	\subsection{Step 1}
+	\par{
+		By the end of this week we need to have the network (device and core) setup, and prepare the sample set
+		of random coap packets for the emulation.
+	}
+
+	\subsection{Step 2}
+	\par{
+	
+		By the end of reading week, I need to have finished implementing mode 1 (Static rules) and start running the emulation on the sample packets.
+		We record the number of times a rule change occurs and the size of the packet as a measure of performance
+	}
+
+	\subsection{Step 3}
+	\par{
+		By the end of the week after reading week, I need to have a working implementation of mode 2 (Map Updating)
+	}
+
+	\subsection{Future steps}
+	\par{
+		I still need to verify the feasibility of mode 3. further a combination of mode 1 and 2 in which we make use 
+		of the 2 level priority queue with 3 levels where level 1 implements Static rules, level 2 implements Mapping, and
+		level 3 is uncompressed.
+	}
+
+	
+
+\end{document}

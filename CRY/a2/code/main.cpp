@@ -39,5 +39,5 @@ int main(){
 	auto zeta_product = accumulate(zeta_list.begin(), zeta_list.end(), 
 			1.0, std::multiplies<>());
 	
-	print(stdout, "{}", zeta_product*number);
+	print(stdout, "{}", static_cast<int>(zeta_product*number));
 }

@@ -1,0 +1,129 @@
+from typing import Counter
+import matplotlib.pyplot as plt
+from numpy.core.fromnumeric import sort
+import coap
+import numpy as np
+from scapy.all import *
+from scipy.stats import beta
+from scipy.stats import uniform 
+
+SAMPLE_SIZE = 10007
+FIELD_SAMPLE_SIZE = 83 
+VARIABLES = 20
+ALPHA = 2
+BETA = 40
+
+#filename =f"samples/v2/b{BETA}a{ALPHA}_v2.txt"
+filename= f"samples/v2/uniform.txt"
+#sample 1 seed 67
+#sample 2 seed 8516 
+seed = np.random.randint(1, 10000)
+np.random.seed(seed)
+
+dev = [
+"2001:835:c67:bf59 f383:8c10:c744:b176",
+"2001:dd21:cc60:ce40 6da2:7414:9c95:c826",
+"2001:7509:8d25:f83b 173c:e43:218f:926b",
+"2001:6104:4ac9:c23d 4621:447e:4102:4945",
+"2001:e602:fb38:5132 84f1:6853:4a08:c321",
+"2001:325e:c6e4:ff0a 953d:3f6d:a5b3:eb22",
+"2001:8337:c221:2c56 5d4c:7342:caaf:417d",
+"2001:6114:2dc3:3e05 c59e:907f:f30:c877",
+"2001:3971:7bdb:c50b 7b16:d57:50e8:ce08",
+"2001:1546:29a1:e716 336e:8b57:a207:d75b",
+"2001:7025:31d4:616a de36:6973:82ef:5754",
+"2001:be2c:6ade:e72a dba0:7d6f:dc23:c317",
+"2001:2435:d3dd:9a5d 7b1a:d7b:956f:7a",
+"2001:525b:69ce:5526 a309:475a:cf37:9f1f",
+"2001:4b56:5e34:6556 fb95:6709:c942:6f66",
+"2001:b925:be3b:310 7428:5a24:9dd0:49",
+"2001:5e3a:b801:d245 e162:cc02:18d1:4a24",
+"2001:ca48:218b:8269 7b77:6d7a:625f:1f0e",
+"2001:1b12:16ec:f73b 878b:4b4d:9fd2:ea47",
+"2001:fc29:f918:8c02 8a4:7f0b:4aa2:43c"
+]
+
+app = [
+"2001:7561:b9c7:e141 e970:301d:7aee:182b",
+"2001:4a78:e8b3:6b77 f30a:904a:d424:eb75",
+"2001:1603:f4c2:ee29 96a9:d624:b985:e907",
+"2001:eb04:ae36:567e 3fdb:b94b:101f:c91f",
+"2001:e576:9d07:ef14 bc63:ed5d:77ce:cf47",
+"2001:241c:3762:6b36 b6c1:7f0e:2d2b:bd58",
+"2001:f21b:9265:8f1c 1061:1d77:2735:2960",
+"2001:f213:a8b3:4273 bcd8:e127:a3f6:4f32",
+"2001:9b10:be84:4a36 4979:4029:4971:55a",
+"2001:927d:5f0e:9c7b ca99:4016:ee96:1652",
+"2001:a322:dc6a:4c1d 18df:d546:1391:c962",
+"2001:7127:9d80:834c 1d10:c62c:f77e:2626",
+"2001:1c72:6a97:9d1f 1c8:4305:d7b9:7b6d",
+"2001:db36:adec:b50e 4232:362b:ca03:c930",
+"2001:f006:1bae:585c b570:7a0f:a6d6:c12",
+"2001:762b:aeb7:5b75 9384:6217:cb0a:126e",
+"2001:6c1a:1ff5:db35 9156:637c:24c4:57a",
+"2001:537:e4ce:cf37 1838:c501:3afb:2572",
+"2001:375:b38b:3d16 7eca:cb78:f107:6d22",
+"2001:b1a:3adf:c953 9f97:2355:8676:e19"
+]
+
+uri = [
+    "login",
+    "logout",
+    "register" ,
+    "profile" ,
+    "dashboard",
+    "setting",
+    "account",
+    "notification",
+    "message",
+    "search",
+    "uploa",
+    "download",
+    "file",
+    "image",
+    "post",
+    "temerature",
+    "time",
+    "location",
+    "setup",
+    "stop"
+]
+
+
+def sample_fields(field):
+    #weights = beta.rvs(a=1, b=1, size=VARIABLES)
+    weights = uniform.rvs(size=VARIABLES)
+    weights /= weights.sum()    # normalizing the weights
+    return np.random.choice(field, size=FIELD_SAMPLE_SIZE, replace=True, p =weights)
+    
+
+def sample_pkt(fields):
+    weights = uniform.rvs(size=FIELD_SAMPLE_SIZE)
+    #weights = beta.rvs(a=ALPHA, b=BETA, size=FIELD_SAMPLE_SIZE)
+    weights /= weights.sum()    # normalizing the weights
+
+    uri, dev, app= fields   
+    pkt_list : list[str] = [] 
+
+    for i in range(0, FIELD_SAMPLE_SIZE):
+        pkt_list.append(f"{app[i]} {dev[i]} {uri[i]}")
+   
+     
+    return np.random.choice(pkt_list, size=SAMPLE_SIZE, replace=True, p=weights)
+
+
+def main():
+    global uri, app, dev
+
+    output = open(filename, 'w')
+    uri_X = sample_fields(uri)
+    dev_X = sample_fields(dev)
+    app_X = sample_fields(app)
+
+    pkt_list = sample_pkt([uri_X, dev_X, app_X])
+    for pkt in pkt_list:
+        output.write(pkt+"\n")
+    
+
+if __name__ == "__main__":
+    main()
